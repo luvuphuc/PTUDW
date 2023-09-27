@@ -77,3 +77,10 @@ C:\Users\Vu Phuc\Documents\GitHub\PTUDW\ProjectASP\ProjectASP\obj\Debug\ProjectA
 C:\Users\Vu Phuc\Documents\GitHub\PTUDW\ProjectASP\ProjectASP\obj\Debug\ProjectASP.csproj.CopyComplete
 C:\Users\Vu Phuc\Documents\GitHub\PTUDW\ProjectASP\ProjectASP\obj\Debug\ProjectASP.dll
 C:\Users\Vu Phuc\Documents\GitHub\PTUDW\ProjectASP\ProjectASP\obj\Debug\ProjectASP.pdb
+C:\Users\Vu Phuc\Documents\GitHub\PTUDW\ProjectASP\ProjectASP\bin\EntityFramework.dll
+C:\Users\Vu Phuc\Documents\GitHub\PTUDW\ProjectASP\ProjectASP\bin\EntityFramework.SqlServer.dll
+C:\Users\Vu Phuc\Documents\GitHub\PTUDW\ProjectASP\ProjectASP\bin\EntityFramework.xml
+C:\Users\Vu Phuc\Documents\GitHub\PTUDW\ProjectASP\ProjectASP\bin\EntityFramework.SqlServer.xml
+C:\Users\Vu Phuc\Documents\GitHub\PTUDW\ProjectASP\ProjectASP\bin\MyClass.dll
+C:\Users\Vu Phuc\Documents\GitHub\PTUDW\ProjectASP\ProjectASP\bin\MyClass.pdb
+C:\Users\Vu Phuc\Documents\GitHub\PTUDW\ProjectASP\ProjectASP\bin\MyClass.dll.config
