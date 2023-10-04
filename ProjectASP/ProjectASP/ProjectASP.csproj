@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
   <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -46,10 +47,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
@@ -127,6 +128,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\CategoriesController.cs" />
     <Compile Include="Areas\Admin\Controllers\DashboardController.cs" />
     <Compile Include="Controllers\SiteController.cs" />
     <Compile Include="Global.asax.cs">
@@ -2128,6 +2130,11 @@
     <Content Include="Public\plugins\summernote\summernote.js.map" />
     <Content Include="Public\plugins\summernote\summernote.min.js.map" />
     <Content Include="Public\plugins\toastr\toastr.js.map" />
+    <Content Include="Areas\Admin\Views\Categories\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Categories\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Categories\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Categories\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Categories\Index.cshtml" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -2143,60 +2150,6 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
-    <Content Include="Public\aroma\Aroma Shop-doc\css\font-awesome.min.css" />
-    <Content Include="Public\aroma\Aroma Shop-doc\css\main.css" />
-    <Content Include="Public\aroma\Aroma Shop-doc\css\normalize.min.css" />
-    <Content Include="Public\aroma\Aroma Shop-doc\fonts\fontawesome-webfont.svg" />
-    <Content Include="Public\aroma\Aroma Shop-doc\img\logo.png" />
-    <Content Include="Public\aroma\Aroma Shop-doc\index.html" />
-    <Content Include="Public\aroma\Aroma Shop-doc\js\custom.js" />
-    <Content Include="Public\aroma\Aroma Shop-doc\js\jquery-1.11.0.min.js" />
-    <Content Include="Public\aroma\Aroma Shop-doc\js\jquery.nav.js" />
-    <Content Include="Public\aroma\Aroma Shop-doc\syntax-highlighter\scripts\shAutoloader.js" />
-    <Content Include="Public\aroma\Aroma Shop-doc\syntax-highlighter\scripts\shBrushAppleScript.js" />
-    <Content Include="Public\aroma\Aroma Shop-doc\syntax-highlighter\scripts\shBrushAS3.js" />
-    <Content Include="Public\aroma\Aroma Shop-doc\syntax-highlighter\scripts\shBrushBash.js" />
-    <Content Include="Public\aroma\Aroma Shop-doc\syntax-highlighter\scripts\shBrushColdFusion.js" />
-    <Content Include="Public\aroma\Aroma Shop-doc\syntax-highlighter\scripts\shBrushCpp.js" />
-    <Content Include="Public\aroma\Aroma Shop-doc\syntax-highlighter\scripts\shBrushCSharp.js" />
-    <Content Include="Public\aroma\Aroma Shop-doc\syntax-highlighter\scripts\shBrushCss.js" />
-    <Content Include="Public\aroma\Aroma Shop-doc\syntax-highlighter\scripts\shBrushDelphi.js" />
-    <Content Include="Public\aroma\Aroma Shop-doc\syntax-highlighter\scripts\shBrushDiff.js" />
-    <Content Include="Public\aroma\Aroma Shop-doc\syntax-highlighter\scripts\shBrushErlang.js" />
-    <Content Include="Public\aroma\Aroma Shop-doc\syntax-highlighter\scripts\shBrushGroovy.js" />
-    <Content Include="Public\aroma\Aroma Shop-doc\syntax-highlighter\scripts\shBrushJava.js" />
-    <Content Include="Public\aroma\Aroma Shop-doc\syntax-highlighter\scripts\shBrushJavaFX.js" />
-    <Content Include="Public\aroma\Aroma Shop-doc\syntax-highlighter\scripts\shBrushJScript.js" />
-    <Content Include="Public\aroma\Aroma Shop-doc\syntax-highlighter\scripts\shBrushPerl.js" />
-    <Content Include="Public\aroma\Aroma Shop-doc\syntax-highlighter\scripts\shBrushPhp.js" />
-    <Content Include="Public\aroma\Aroma Shop-doc\syntax-highlighter\scripts\shBrushPlain.js" />
-    <Content Include="Public\aroma\Aroma Shop-doc\syntax-highlighter\scripts\shBrushPowerShell.js" />
-    <Content Include="Public\aroma\Aroma Shop-doc\syntax-highlighter\scripts\shBrushPython.js" />
-    <Content Include="Public\aroma\Aroma Shop-doc\syntax-highlighter\scripts\shBrushRuby.js" />
-    <Content Include="Public\aroma\Aroma Shop-doc\syntax-highlighter\scripts\shBrushSass.js" />
-    <Content Include="Public\aroma\Aroma Shop-doc\syntax-highlighter\scripts\shBrushScala.js" />
-    <Content Include="Public\aroma\Aroma Shop-doc\syntax-highlighter\scripts\shBrushSql.js" />
-    <Content Include="Public\aroma\Aroma Shop-doc\syntax-highlighter\scripts\shBrushVb.js" />
-    <Content Include="Public\aroma\Aroma Shop-doc\syntax-highlighter\scripts\shBrushXml.js" />
-    <Content Include="Public\aroma\Aroma Shop-doc\syntax-highlighter\scripts\shCore.js" />
-    <Content Include="Public\aroma\Aroma Shop-doc\syntax-highlighter\scripts\shLegacy.js" />
-    <Content Include="Public\aroma\Aroma Shop-doc\syntax-highlighter\styles\shCore.css" />
-    <Content Include="Public\aroma\Aroma Shop-doc\syntax-highlighter\styles\shCoreDefault.css" />
-    <Content Include="Public\aroma\Aroma Shop-doc\syntax-highlighter\styles\shCoreDjango.css" />
-    <Content Include="Public\aroma\Aroma Shop-doc\syntax-highlighter\styles\shCoreEclipse.css" />
-    <Content Include="Public\aroma\Aroma Shop-doc\syntax-highlighter\styles\shCoreEmacs.css" />
-    <Content Include="Public\aroma\Aroma Shop-doc\syntax-highlighter\styles\shCoreFadeToGrey.css" />
-    <Content Include="Public\aroma\Aroma Shop-doc\syntax-highlighter\styles\shCoreMDUltra.css" />
-    <Content Include="Public\aroma\Aroma Shop-doc\syntax-highlighter\styles\shCoreMidnight.css" />
-    <Content Include="Public\aroma\Aroma Shop-doc\syntax-highlighter\styles\shCoreRDark.css" />
-    <Content Include="Public\aroma\Aroma Shop-doc\syntax-highlighter\styles\shThemeDefault.css" />
-    <Content Include="Public\aroma\Aroma Shop-doc\syntax-highlighter\styles\shThemeDjango.css" />
-    <Content Include="Public\aroma\Aroma Shop-doc\syntax-highlighter\styles\shThemeEclipse.css" />
-    <Content Include="Public\aroma\Aroma Shop-doc\syntax-highlighter\styles\shThemeEmacs.css" />
-    <Content Include="Public\aroma\Aroma Shop-doc\syntax-highlighter\styles\shThemeFadeToGrey.css" />
-    <Content Include="Public\aroma\Aroma Shop-doc\syntax-highlighter\styles\shThemeMDUltra.css" />
-    <Content Include="Public\aroma\Aroma Shop-doc\syntax-highlighter\styles\shThemeMidnight.css" />
-    <Content Include="Public\aroma\Aroma Shop-doc\syntax-highlighter\styles\shThemeRDark.css" />
     <Content Include="Public\aroma\blog.html" />
     <Content Include="Public\aroma\cart.html" />
     <Content Include="Public\aroma\category.html" />
@@ -2708,11 +2661,6 @@
     <Content Include="Views\Web.config" />
     <Content Include="Views\Shared\_LayoutSite.cshtml" />
     <Content Include="Views\Site\Index.cshtml" />
-    <Content Include="Public\aroma\Aroma Shop-doc\fonts\fontawesome-webfont.eot" />
-    <Content Include="Public\aroma\Aroma Shop-doc\fonts\fontawesome-webfont.ttf" />
-    <Content Include="Public\aroma\Aroma Shop-doc\fonts\fontawesome-webfont.woff" />
-    <Content Include="Public\aroma\Aroma Shop-doc\fonts\FontAwesome.otf" />
-    <Content Include="Public\aroma\Aroma Shop-doc\img\Thumbs.db" />
     <Content Include="Public\aroma\img\blog\.DS_Store" />
     <Content Include="Public\aroma\img\gallery\.DS_Store" />
     <Content Include="Public\aroma\img\Thumbs.db" />
@@ -2832,7 +2780,10 @@
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
   </Target>
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
