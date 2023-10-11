@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Net;
 using System.Runtime.InteropServices.ComTypes;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,8 +18,9 @@ namespace MyClass.DAO
         {
             return db.Categories.ToList();
         }
+        // GET: Admin/Category
 
-        //Hien thi danh sach theo trang thai
+        //INDEX dua vao status = 1,2, còn status = 0 == thung rac
         public List<Categories> getList(string status = "All")
         {
             List<Categories> list = null;
@@ -26,7 +28,7 @@ namespace MyClass.DAO
             {
                 case "Index":
                     {
-                        list = db.Categories.Where(m => m.Status !=0).ToList();
+                        list = db.Categories.Where(m => m.Status != 0).ToList();
                         break;
                     }
                 case "Trash":
@@ -36,32 +38,45 @@ namespace MyClass.DAO
                     }
                 default:
                     {
-                        list = db.Categories.ToList();
-                        break;
+                        return db.Categories.ToList(); 
                     }
             }
             return list;
         }
+        // Details
         public Categories getRow(int? id)
         {
-            if (id == null) return null;
-            else return db.Categories.Find(id);
+            if (id == null)
+            {
+                return null;
+            }
+            else
+            {
+                return db.Categories.Find(id);
+            }
         }
+        
+
+        // Create 
         public int Insert(Categories row)
         {
             db.Categories.Add(row);
             return db.SaveChanges();
+
         }
+        //Update
         public int Update(Categories row)
         {
             db.Entry(row).State = EntityState.Modified;
             return db.SaveChanges();
         }
-        ///Xoa mot mau tin Xoa ra khoi CSDL
+
+        //Delete
         public int Delete(Categories row)
         {
             db.Categories.Remove(row);
             return db.SaveChanges();
-        }   
+        }
+       
     }
 }
