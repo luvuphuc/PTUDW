@@ -1,10 +1,9 @@
-﻿@model IEnumerable<MyClass.Model.Categories>
+﻿@model IEnumerable<MyClass.Model.Suppliers>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Trang chủ nhà cung cấp";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
-
 @section header{
     <link href="~/Public/css/jquery.dataTables.min.css" rel="stylesheet" />
 }
@@ -29,8 +28,8 @@
                             <strong class="text-danger">DANH MỤC LOẠI HÀNG</strong>
                         </div>
                         <div class="col-md-6 text-right">
-                            <a href="@Url.Action("Create","Category")" class="btn-sm btn-success"><i class="fa fa-plus"> Thêm</i></a>
-                            <a href="@Url.Action("Trash","Category")" class="btn-sm btn-danger"><i class="fa fa-trash"> Thùng rác</i></a>
+                            <a href="@Url.Action("Create","Supplier")" class="btn-sm btn-success"><i class="fa fa-plus"> Thêm</i></a>
+                            <a href="@Url.Action("Trash","Supplier")" class="btn-sm btn-danger"><i class="fa fa-trash"> Thùng rác</i></a>
                         </div>
                     </div>
                 </div>
@@ -43,8 +42,11 @@
                                 <th>@Html.DisplayNameFor(model => model.Id)</th>
                                 <th>@Html.DisplayNameFor(model => model.Name)</th>
                                 <th>@Html.DisplayNameFor(model => model.Slug)</th>
-                                <th>@Html.DisplayNameFor(model => model.ParentId)</th>
+                                <th>@Html.DisplayNameFor(model => model.FullName)</th>
                                 <th>@Html.DisplayNameFor(model => model.Order)</th>
+                                <th>@Html.DisplayNameFor(model => model.Phone)</th>
+                                <th>@Html.DisplayNameFor(model => model.Email)</th>
+                                <th>@Html.DisplayNameFor(model => model.Image)</th>
                                 <th>Chức năng</th>
                             </tr>
                         </thead>
@@ -56,20 +58,23 @@
                                     <td>@Html.DisplayFor(modelItem => item.Id)</td>
                                     <td>@Html.DisplayFor(modelItem => item.Name)</td>
                                     <td>@Html.DisplayFor(modelItem => item.Slug)</td>
-                                    <td>@Html.DisplayFor(modelItem => item.ParentId)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.FullName)</td>
                                     <td>@Html.DisplayFor(modelItem => item.Order)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.Phone)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.Email)</td>
+                                    <td><img src="~/Public/img/supplier/@item.Image" alt="Img" style="max-width: 100px;"/></td>
                                     <td>
                                         @if (item.Status == 1)
                                         {
-                                            <a href="@Url.Action("Status","Category", new { id = item.Id })" class="btn-sm btn-success"><i class="fa fa-toggle-on"></i></a>
+                                            <a href="@Url.Action("Status","Supplier", new { id = item.Id })" class="btn-sm btn-success"><i class="fa fa-toggle-on"></i></a>
                                         }
                                         else
                                         {
-                                            <a href="@Url.Action("Status","Category", new { id = item.Id })" class="btn-sm btn-danger"><i class="fa fa-toggle-off"></i></a>
+                                            <a href="@Url.Action("Status","Supplier", new { id = item.Id })" class="btn-sm btn-danger"><i class="fa fa-toggle-off"></i></a>
                                         }
-                                        <a href="@Url.Action("Edit","Category", new { id = item.Id })" class="btn-sm btn-primary"><i class="fa fa-edit"></i></a>
-                                        <a href="@Url.Action("Details","Category", new { id = item.Id })" class="btn-sm btn-info"><i class="fa fa-eye"></i></a>
-                                        <a href="@Url.Action("DelTrash","Category", new { id = item.Id })" class="btn-sm btn-danger"><i class="fa fa-trash"></i></a>
+                                        <a href="@Url.Action("Edit","Supplier", new { id = item.Id })" class="btn-sm btn-primary"><i class="fa fa-edit"></i></a>
+                                        <a href="@Url.Action("Details","Supplier", new { id = item.Id })" class="btn-sm btn-info"><i class="fa fa-eye"></i></a>
+                                        <a href="@Url.Action("DelTrash","Supplier", new { id = item.Id })" class="btn-sm btn-danger"><i class="fa fa-trash"></i></a>
                                     </td>
                                 </tr>
                             }
@@ -82,3 +87,5 @@
         </section><!-- /.content -->
     </div> <!-- /.content-wrapper -->
 </div><!-- ./wrapper -->
+
+

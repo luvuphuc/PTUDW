@@ -26,19 +26,39 @@ namespace ProjectASP.Areas.Admin.Controllers
         }
 
 
+        // GET: Admin/Category/Details
         public ActionResult Details(int? id)
         {
+            List<Categories> ls = categoriesDAO.getList("Index");
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                TempData["message"] = new XMessage("danger", "Không tìm thấy loại hàng");
+                return RedirectToAction("Index");
             }
             Categories categories = categoriesDAO.getRow(id);
             if (categories == null)
             {
-                return HttpNotFound();
+                TempData["message"] = new XMessage("danger", "Không tìm thấy loại hàng");
             }
+            if(categories.ParentId == 0)
+            {
+                ViewBag.Name = categories.Name;
+            }
+            else
+            {
+                foreach (var i in ls)
+                {
+                    if (i.Id == categories.ParentId)
+                    {
+                        ViewBag.Name = i.Name;
+                    }
+                }
+            }
+            
             return View(categories);
         }
+
+        // GET: Admin/Category/Create
         public ActionResult Create()
         {
             ViewBag.CatList = new SelectList(categoriesDAO.getList("Index"),"Id","Name");
@@ -93,9 +113,7 @@ namespace ProjectASP.Areas.Admin.Controllers
 
         }
 
-
-
-
+        // GET: Admin/Category/Edit/5
         public ActionResult Edit(int? id)
         {
             ViewBag.CatList = new SelectList(categoriesDAO.getList("Index"), "Id", "Name");
@@ -156,46 +174,38 @@ namespace ProjectASP.Areas.Admin.Controllers
             return View(categories);
         }
 
-        // GET: Admin/Category/Details/5
-
-
-
-
-
-        // GET: Admin/Category/Create
-
-
-
-
-        // GET: Admin/Category/Edit/5
-
-
-
-        // GET: Admin/Category/Delete/5
+        // GET: Admin/Category/Delete/
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                //hien thi thong bao
+                TempData["message"] = new XMessage("danger", "Xóa mẩu tin thất bại");
+                return RedirectToAction("Trash");
             }
             Categories categories = categoriesDAO.getRow(id);
             if (categories == null)
             {
-                return HttpNotFound();
+                //hien thi thong bao
+                TempData["message"] = new XMessage("danger", "Xóa mẩu tin thất bại");
+                return RedirectToAction("Trash");
             }
             return View(categories);
         }
 
-        // POST: Admin/Category/Delete/5
+        // POST: Admin/Category/Delete
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
             Categories categories = categoriesDAO.getRow(id);
+            //tim thay mau tin => xoa
             categoriesDAO.Delete(categories);
-            return RedirectToAction("Index");
+            TempData["message"] = new XMessage("success", "Xóa mẩu tin thành công");
+            return RedirectToAction("Trash");
         }
-        //Status
+
+        // POST: Admin/Category/Status
         public ActionResult Status(int? id)
         {
             if (id == null)
@@ -223,6 +233,8 @@ namespace ProjectASP.Areas.Admin.Controllers
             //tro ve trang Index
             return RedirectToAction("Index");
         }
+
+        // POST: Admin/Category/DelTrash
         public ActionResult DelTrash(int? id)
         {
             if (id == null)
@@ -254,6 +266,35 @@ namespace ProjectASP.Areas.Admin.Controllers
         public ActionResult Trash()
         {
             return View(categoriesDAO.getList("Trash"));
+        }
+
+        // POST: Admin/Category/Undo
+        public ActionResult Undo(int? id)
+        {
+            if (id == null)
+            {
+                //hien thi thong bao
+                TempData["message"] = new XMessage("danger", "Phục hồi mẩu tin thất bại");
+                return RedirectToAction("Index");
+            }
+            Categories categories = categoriesDAO.getRow(id);
+            if (categories == null)
+            {
+                TempData["message"] = new XMessage("danger", "Phục hồi mẩu tin thất bại");
+                return RedirectToAction("Index");
+            }
+            //cap nhat trang thai status =2
+            categories.Status = 2;
+            //cap nhat update at
+            categories.UpdateAt = DateTime.Now;
+            //cap nhat update by
+            categories.UpdateBy = Convert.ToInt32(Session["UserID"]);
+            //update db
+            categoriesDAO.Update(categories);
+            //hien thi thong bao
+            TempData["message"] = new XMessage("success", "Phục hồi mẩu tin thành công");
+            //tro ve trang Index
+            return RedirectToAction("Trash");
         }
     }
 }
