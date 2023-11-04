@@ -130,6 +130,7 @@ namespace ProjectASP.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(Suppliers suppliers)
         {
+
             if (ModelState.IsValid)
             {
                 //cap nhat
@@ -153,8 +154,27 @@ namespace ProjectASP.Areas.Admin.Controllers
                 suppliers.UpdateBy = Convert.ToInt32(Session["UserID"]);
                 //xu ly thong tin
                 //xu ly cho phan upload hình ảnh
+
+                // Kiểm tra và xóa file hình ảnh cũ
+                string imageName = suppliers.Image;
+
+                // Kiểm tra và xóa file hình ảnh
+                if (!string.IsNullOrEmpty(imageName))
+                {
+                    string slug = XString.Str_Slug(suppliers.Name);
+                    string fileExtension = Path.GetExtension(imageName); // Lấy phần mở rộng của tệp tin
+                    string imagePath = Path.Combine(Server.MapPath("~/Public/img/supplier/"), slug + fileExtension);
+
+                    if (System.IO.File.Exists(imagePath))
+                    {
+                        System.IO.File.Delete(imagePath);
+                    }
+                }
+                suppliers.Image = null;
+                // lay thong tin file
+                //xu ly cho phan upload hình ảnh
                 var img = Request.Files["img"];//lay thong tin file
-                if (img.ContentLength != 0)
+                if (img != null &&img.ContentLength != 0)
                 {
                     string[] FileExtentions = new string[] { ".jpg", ".jpeg", ".png", ".gif" };
                     //kiem tra tap tin co hay khong
@@ -170,10 +190,11 @@ namespace ProjectASP.Areas.Admin.Controllers
                         img.SaveAs(PathFile);
                     }
                 }//ket thuc phan upload hinh anh
+                 //hien thi thong bao thanh cong
+                TempData["message"] = new XMessage("success", "Cập nhật thông tin thành công");
                 //cap nhat mau tin vao DB
                 suppliersDAO.Update(suppliers);
-                //hien thi thong bao thanh cong
-                TempData["message"] = new XMessage("danger", "Cập nhật thông tin thành công");
+               
                 return RedirectToAction("Index");
             }
             ViewBag.OrderList = new SelectList(suppliersDAO.getList("Index"), "Order", "Name");
@@ -202,11 +223,25 @@ namespace ProjectASP.Areas.Admin.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Suppliers suppliers = suppliersDAO.getRow(id);
+            string imageName = suppliers.Image;
+
+            // Kiểm tra và xóa file hình ảnh
+            if (!string.IsNullOrEmpty(imageName))
+            {
+                string slug = XString.Str_Slug(suppliers.Name);
+                string fileExtension = Path.GetExtension(imageName); // Lấy phần mở rộng của tệp tin
+                string imagePath = Path.Combine(Server.MapPath("~/Public/img/supplier/"), slug + fileExtension);
+
+                if (System.IO.File.Exists(imagePath))
+                {
+                    System.IO.File.Delete(imagePath);
+                }
+            }
             suppliersDAO.Delete(suppliers);
+
             TempData["message"] = new XMessage("success", "Xóa mẫu tin thành công");
             return RedirectToAction("Trash");
         }
-
         // POST: Admin/Supplier/Status
         public ActionResult Status(int? id)
         {
