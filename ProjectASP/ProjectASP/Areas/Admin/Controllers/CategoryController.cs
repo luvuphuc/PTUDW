@@ -22,6 +22,15 @@ namespace ProjectASP.Areas.Admin.Controllers
         //INDEX
         public ActionResult Index()
         {
+            var categories = categoriesDAO.getList("Index");
+            foreach (var i in categories)
+            {
+                Categories category = categoriesDAO.getRow(i.ParentId);
+                if (category != null)
+                {
+                    ViewBag.Name = category.Name;
+                }
+            }
             return View(categoriesDAO.getList("Index"));
         }
 

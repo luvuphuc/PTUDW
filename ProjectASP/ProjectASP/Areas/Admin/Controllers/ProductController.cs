@@ -22,7 +22,15 @@ namespace ProjectASP.Areas.Admin.Controllers
         // GET: Admin/Product
         public ActionResult Index()
         {
-            return View(productsDAO.getList("Index"));
+            var products =productsDAO.getList("Index");
+            foreach(var i in products)
+            {
+                Suppliers supplier = suppliersDAO.getRow(i.Supplier);
+                if(supplier != null) {
+                    ViewBag.Name = supplier.Name;
+                }
+            }
+            return View(products);
         }
 
         // GET: Admin/Product/Details/5
@@ -38,6 +46,16 @@ namespace ProjectASP.Areas.Admin.Controllers
             {
                 TempData["message"] = new XMessage("danger", "Không tìm thấy sản phẩm");
                 return RedirectToAction("Index");
+            }
+            var ls = suppliersDAO.getList();
+            {
+                foreach (var i in ls)
+                {
+                    if (i.Id == products.Supplier)
+                    {
+                        ViewBag.Name = i.Name;
+                    }
+                }
             }
             return View(products);
         }

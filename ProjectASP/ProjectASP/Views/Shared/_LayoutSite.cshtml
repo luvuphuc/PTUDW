@@ -1,6 +1,7 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
+    @RenderSection("header", required: false)
     <title>@Page.Title</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -22,7 +23,6 @@
     <script src="Public/vendors/jquery.ajaxchimp.min.js"></script>
     <script src="Public/vendors/mail-script.js"></script>
     <script src="Public/js/main.js"></script>
-    @RenderSection("header", required: false)
 </head>
 <body>
     <!--================ Start Header Menu Area =================-->

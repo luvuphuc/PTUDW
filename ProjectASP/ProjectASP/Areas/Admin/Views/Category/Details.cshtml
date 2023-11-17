@@ -17,7 +17,7 @@
                 <div class="card-header">
                     <div class="row">
                         <div class="col-md-6">
-                            <strong class="text-danger">DANH MỤC LOẠI HÀNG</strong>
+                            <strong class="text-danger">CHI TIẾT LOẠI HÀNG</strong>
                         </div>
                         <div class="col-md-6 text-right">
                             <a href="@Url.Action("Edit", "Category", new { id = Model.Id })" class="btn-sm btn-success"><i class="fa fa-edit"> Sửa</i></a>
@@ -59,9 +59,3 @@
         </section><!-- /.content -->
     </div> <!-- /.content-wrapper -->
 </div><!-- ./wrapper -->
-
-
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

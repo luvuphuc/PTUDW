@@ -22,6 +22,7 @@ namespace MyClass.Model
         [Required(ErrorMessage = "Nhà CC không được để trống")]
         [Display(Name = "Tên nhà cung cấp")]
         public int Supplier {  get; set; }
+        [Display(Name = "Tên rút gọn")]
         public string Slug { get; set; }
         [Display(Name = "Hình ảnh")]
         public string Image { get; set; }
