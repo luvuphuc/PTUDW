@@ -17,7 +17,7 @@ namespace MyClass.Model
         public string Name { get; set; }
         public string Slug { get; set; }
         [Required]
-        public string TableId { get; set; }
+        public int TableId { get; set; }
         public string Type { get; set; }
     }
 }
