@@ -206,11 +206,13 @@ namespace ProjectASP.Areas.Admin.Controllers
         {
             if (id == null)
             {
+                TempData["message"] = new XMessage("danger", "Không tìm thấy Menu thất bại");
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Menus menus = menusDAO.getRow(id);
             if (menus == null)
             {
+                TempData["message"] = new XMessage("danger", "Không tìm thấy Menu thất bại");
                 return HttpNotFound();
             }
             return View(menus);
@@ -311,7 +313,7 @@ namespace ProjectASP.Areas.Admin.Controllers
 
         /////////////////////////////////////////////////////////////////////////////////////
         // GET: Admin/Menu/Recover/5:Thay doi trang thai cua mau tin
-        public ActionResult Recover(int? id)
+        public ActionResult Undo(int? id)
         {
             if (id == null)
             {

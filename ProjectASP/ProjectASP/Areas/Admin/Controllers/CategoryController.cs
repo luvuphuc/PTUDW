@@ -16,7 +16,7 @@ namespace ProjectASP.Areas.Admin.Controllers
     public class CategoryController : Controller
     {
         CategoriesDAO categoriesDAO = new CategoriesDAO();
-
+        LinksDAO linksDAO = new LinksDAO();
         // GET: Admin/Category
 
         //INDEX
@@ -111,11 +111,21 @@ namespace ProjectASP.Areas.Admin.Controllers
                 categories.UpdateBy = Convert.ToInt32(Session["UserID"]);
 
                 categoriesDAO.Insert(categories);
+                //xu ly cho muc Topics
+                if (categoriesDAO.Insert(categories) == 1)//khi them du lieu thanh cong
+                {
+                    Links links = new Links();
+                    links.Slug = categories.Slug;
+                    links.TableId = categories.Id;
+                    links.Type = "category";
+                    linksDAO.Insert(links);
+                }
                 //hien thi thong bao thanh cong
                 TempData["message"] = new XMessage("success","Tạo mới loại sản phẩm thành công");
 
                 return RedirectToAction("Index");
             }
+
             ViewBag.CatList = new SelectList(categoriesDAO.getList("Index"), "Id", "Name");
             ViewBag.OrderList = new SelectList(categoriesDAO.getList("Index"), "Order", "Name");
             return View(categories);
@@ -176,6 +186,15 @@ namespace ProjectASP.Areas.Admin.Controllers
                 //cap nhat db
                 TempData["message"] = new XMessage("success", "Cập nhật thông tin thành công");
                 categoriesDAO.Update(categories);
+                //xu ly cho muc Topics
+                if (categoriesDAO.Insert(categories) == 1)//khi them du lieu thanh cong
+                {
+                    Links links = new Links();
+                    links.Slug = categories.Slug;
+                    links.TableId = categories.Id;
+                    links.Type = "category";
+                    linksDAO.Insert(links);
+                }
                 return RedirectToAction("Index");
             }
             ViewBag.CatList = new SelectList(categoriesDAO.getList("Index"), "Id", "Name");

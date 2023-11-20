@@ -132,8 +132,10 @@
     <Compile Include="Areas\Admin\Controllers\DashboardController.cs" />
     <Compile Include="Areas\Admin\Controllers\MenuController.cs" />
     <Compile Include="Areas\Admin\Controllers\OrderController.cs" />
+    <Compile Include="Areas\Admin\Controllers\PageController.cs" />
     <Compile Include="Areas\Admin\Controllers\PostController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductController.cs" />
+    <Compile Include="Areas\Admin\Controllers\SliderController.cs" />
     <Compile Include="Areas\Admin\Controllers\SupplierController.cs" />
     <Compile Include="Areas\Admin\Controllers\TopicController.cs" />
     <Compile Include="Controllers\SiteController.cs" />
@@ -2682,6 +2684,19 @@
     <Content Include="Areas\Admin\Views\Topic\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Topic\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Topic\Trash.cshtml" />
+    <Content Include="Areas\Admin\Views\Page\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Page\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Page\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Page\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Page\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Page\Trash.cshtml" />
+    <Content Include="Areas\Admin\Views\Menu\Trash.cshtml" />
+    <Content Include="Areas\Admin\Views\Slider\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Slider\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Slider\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Slider\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Slider\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Slider\Trash.cshtml" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

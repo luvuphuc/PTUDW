@@ -24,10 +24,10 @@ namespace MyClass.Model
         public int CreateBy {  get; set; }
         [Required]
         public DateTime CreateAt { get; set; }
-        [Required]
-        public int UpdateBy { get; set; }
-        [Required]
-        public DateTime UpdateAt { get; set; }
+        
+        public int? UpdateBy { get; set; }
+        
+        public DateTime? UpdateAt { get; set; }
         [Required]
         public int Status { get; set; }
     }
