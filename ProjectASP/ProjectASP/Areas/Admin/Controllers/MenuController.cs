@@ -14,58 +14,54 @@ namespace ProjectASP.Areas.Admin.Controllers
 {
     public class MenuController : Controller
     {
-        //Goi 4 lop DAO can thuc thi
         CategoriesDAO categoriesDAO = new CategoriesDAO();
-        TopicsDAO topicsDAO = new TopicsDAO();
-        PostsDAO postsDAO = new PostsDAO();
+        SuppliersDAO suppliersDAO = new SuppliersDAO();
+        ProductsDAO productsDAO = new ProductsDAO();
         MenusDAO menusDAO = new MenusDAO();
-        SuppliersDAO suppliersDAO = new SuppliersDAO();//neu thich thi lam
-
-        /////////////////////////////////////////////////////////////////////////////////////
-        // GET: Admin/Menu
+        /// /////////////////////////////////////////////////////////////
+        // GET: Admin/Menu/Index
         public ActionResult Index()
         {
-            ViewBag.CatList = categoriesDAO.getList("Index");//select * from Categories voi Status !=0
-            ViewBag.TopList = topicsDAO.getList("Index");//select * from Topics voi Status !=0
-            ViewBag.PosList = postsDAO.getList("Index", "Page");//select * from Posts voi Status !=0
-            List<Menus> menu = menusDAO.getList("Index");//select * from Menus voi Status !=0
-            return View("Index", menu);//truyen menu duoi dang model
+            ViewBag.CatList = categoriesDAO.getList("Index");
+            ViewBag.SupList = suppliersDAO.getList("Index");
+            ViewBag.ProList = productsDAO.getList("Index");
+            return View(menusDAO.getList("Index"));
         }
 
-        /////////////////////////////////////////////////////////////////////////////////////
-        // POST: Admin/Menu/Create
         [HttpPost]
         public ActionResult Index(FormCollection form)
         {
-            //-------------------------Category------------------------//
-            //Xu ly cho nút ThemCategory ben Index
-            if (!string.IsNullOrEmpty(form["ThemCategory"]))//nut ThemCategory duoc nhan
+            //Them Loai san pham
+            if (!string.IsNullOrEmpty(form["ThemCategory"]))
             {
-                if (!string.IsNullOrEmpty(form["nameCategory"]))//check box được nhấn
+                //kiem tra dau check cua muc con
+                if (!string.IsNullOrEmpty(form["nameCategory"]))
                 {
                     var listitem = form["nameCategory"];
-                    //chuyen danh sach thanh dang mang: vi du 1,2,3,...
-                    var listarr = listitem.Split(',');//cat theo dau ,
-                    foreach (var row in listarr)//row = id cua các mau tin
+                    //chuyen danh sach thanh dang mang: 1,2,3,4...
+                    var listarr = listitem.Split(',');//ngat mang thanh tung phan tu cach nhau boi dau ,
+                    foreach (var row in listarr)
                     {
                         int id = int.Parse(row);//ep kieu int
                         //lay 1 ban ghi
                         Categories categories = categoriesDAO.getRow(id);
-                        //tao ra menu
+                        //ta ra menu
                         Menus menu = new Menus();
                         menu.Name = categories.Name;
                         menu.Link = categories.Slug;
-                        menu.TableId = categories.Id;
                         menu.TypeMenu = "category";
                         menu.Position = form["Position"];
                         menu.ParentId = 0;
                         menu.Order = 0;
-                        menu.CreateBy = Convert.ToInt32(Session["UserId"].ToString());
                         menu.CreateAt = DateTime.Now;
-                        menu.Status = 2;//chưa xuất bản
+                        menu.CreateBy = Convert.ToInt32(Session["UserID"].ToString());
+                        menu.UpdateAt = DateTime.Now;
+                        menu.UpdateBy = Convert.ToInt32(Session["UserID"].ToString());
+                        menu.Status = 2; //tam thoi chua xuat ban
+                        //Them vao DB
                         menusDAO.Insert(menu);
                     }
-                    TempData["message"] = new XMessage("success", "Thêm menu danh mục thành công");
+                    TempData["message"] = new XMessage("success", "Thêm vào menu thành công");
                 }
                 else
                 {
@@ -73,112 +69,118 @@ namespace ProjectASP.Areas.Admin.Controllers
                 }
             }
 
-            //-------------------------Topic------------------------//
-            //Xu ly cho nút ThemTopic ben Index
-            if (!string.IsNullOrEmpty(form["ThemTopic"]))//nut ThemCategory duoc nhan
+            //Them Nha cung cap
+            if (!string.IsNullOrEmpty(form["ThemSupplier"]))
             {
-                if (!string.IsNullOrEmpty(form["nameTopic"]))//check box được nhấn
+                //kiem tra dau check cua muc con
+                if (!string.IsNullOrEmpty(form["nameSupplier"]))
                 {
-                    var listitem = form["nameTopic"];
-                    //chuyen danh sach thanh dang mang: vi du 1,2,3,...
-                    var listarr = listitem.Split(',');//cat theo dau ,
-                    foreach (var row in listarr)//row = id cua các mau tin
+                    var listitem = form["nameSupplier"];
+                    //chuyen danh sach thanh dang mang: 1,2,3,4...
+                    var listarr = listitem.Split(',');//ngat mang thanh tung phan tu cach nhau boi dau ,
+                    foreach (var row in listarr)
                     {
                         int id = int.Parse(row);//ep kieu int
-                                                //lay 1 ban ghi
-                        Topics topics = topicsDAO.getRow(id);
-                        //tao ra menu
+                        //lay 1 ban ghi
+                        Suppliers suppliers = suppliersDAO.getRow(id);
+                        //ta ra menu
                         Menus menu = new Menus();
-                        menu.Name = topics.Name;
-                        menu.Link = topics.Slug;
-                        menu.TableId = topics.Id;
-                        menu.TypeMenu = "topic";
+                        menu.Name = suppliers.Name;
+                        menu.Link = suppliers.Slug;
+                        menu.TypeMenu = "supplier";
                         menu.Position = form["Position"];
                         menu.ParentId = 0;
                         menu.Order = 0;
-                        menu.CreateBy = Convert.ToInt32(Session["UserId"].ToString());
                         menu.CreateAt = DateTime.Now;
-                        menu.Status = 2;//chưa xuất bản
+                        menu.CreateBy = Convert.ToInt32(Session["UserID"].ToString());
+                        menu.UpdateAt = DateTime.Now;
+                        menu.UpdateBy = Convert.ToInt32(Session["UserID"].ToString());
+                        menu.Status = 2; //tam thoi chua xuat ban
+                        //Them vao DB
                         menusDAO.Insert(menu);
                     }
-                    TempData["message"] = new XMessage("success", "Thêm menu chủ đề bài viết thành công");
+                    TempData["message"] = new XMessage("success", "Thêm vào menu thành công");
                 }
                 else
                 {
-                    TempData["message"] = new XMessage("danger", "Chưa chọn danh mục chủ đề bài viết");
+                    TempData["message"] = new XMessage("danger", "Chưa chọn nhà cung cấp");
                 }
             }
 
-            //-------------------------Page------------------------//
-            //Xử lý cho nut Thempage ben Index
-            if (!string.IsNullOrEmpty(form["ThemPage"]))
+            //Them San pham
+            if (!string.IsNullOrEmpty(form["ThemProduct"]))
             {
-                if (!string.IsNullOrEmpty(form["namePage"]))//check box được nhấn tu phia Index
+                //kiem tra dau check cua muc con
+                if (!string.IsNullOrEmpty(form["nameProduct"]))
                 {
-                    var listitem = form["namePage"];
-                    //chuyen danh sach thanh dang mang: vi du 1,2,3,...
-                    var listarr = listitem.Split(',');//cat theo dau ,
-                    foreach (var row in listarr)//row = id cua các mau tin
+                    var listitem = form["nameProduct"];
+                    //chuyen danh sach thanh dang mang: 1,2,3,4...
+                    var listarr = listitem.Split(',');//ngat mang thanh tung phan tu cach nhau boi dau ,
+                    foreach (var row in listarr)
                     {
                         int id = int.Parse(row);//ep kieu int
-                        Posts post = postsDAO.getRow(id);
-                        //tao ra menu
+                        //lay 1 ban ghi
+                        Products products = productsDAO.getRow(id);
+                        //ta ra menu
                         Menus menu = new Menus();
-                        menu.Name = post.Title;
-                        menu.Link = post.Slug;
-                        menu.TableId = post.Id;
-                        menu.TypeMenu = "page";
+                        menu.Name = products.Name;
+                        menu.Link = products.Slug;
+                        menu.TypeMenu = "product";
                         menu.Position = form["Position"];
                         menu.ParentId = 0;
                         menu.Order = 0;
-                        menu.CreateBy = Convert.ToInt32(Session["UserId"].ToString());
                         menu.CreateAt = DateTime.Now;
-                        menu.Status = 2;//chưa xuất bản
+                        menu.CreateBy = Convert.ToInt32(Session["UserID"].ToString());
+                        menu.UpdateAt = DateTime.Now;
+                        menu.UpdateBy = Convert.ToInt32(Session["UserID"].ToString());
+                        menu.Status = 2; //tam thoi chua xuat ban
+                        //Them vao DB
                         menusDAO.Insert(menu);
                     }
-                    TempData["message"] = new XMessage("success", "Thêm menu bài viết thành công");
+                    TempData["message"] = new XMessage("success", "Thêm vào menu thành công");
                 }
-                else//check box chưa được nhấn
+                else
                 {
-                    TempData["message"] = new XMessage("danger", "Chưa chọn danh mục trang đơn");
+                    TempData["message"] = new XMessage("danger", "Chưa chọn sản phẩm");
                 }
             }
 
-            //-------------------------Custom------------------------//
-            //Xử lý cho nút ThemCustom ben Index
+            //Them Custom
             if (!string.IsNullOrEmpty(form["ThemCustom"]))
             {
-                if (!string.IsNullOrEmpty(form["name"]) && !string.IsNullOrEmpty(form["link"]))
-                //o name, link text được gõ tu phia Index
+                //kiem tra dau check cua muc con
+                if (!string.IsNullOrEmpty(form["nameCustom"]) && !string.IsNullOrEmpty(form["linkCustom"]))
                 {
-                    //tao ra menu
-                    Menus menus = new Menus();
-                    menus.Name = form["name"];//lay tu o nhap du lieu (form)
-                    menus.Link = form["link"];//lay tu o nhap du lieu (form)
-                    //menu.TableId = post.Id;//vi Table Id allow NULL nen bỏ đi
-                    menus.TypeMenu = "custom";
-                    menus.Position = form["Position"];
-                    menus.ParentId = 0;
-                    menus.Order = 0;
-                    menus.CreateBy = Convert.ToInt32(Session["UserId"].ToString());
-                    menus.CreateAt = DateTime.Now;
-                    menus.Status = 2;//chưa xuất bản
-                    menusDAO.Insert(menus);
+                    //tao ra menu custom
+                    Menus menu = new Menus();
+                    menu.Name = form["nameCustom"];
+                    menu.Link = form["linkCustom"];
+                    menu.TypeMenu = "custom";
+                    menu.Position = form["Position"];
+                    menu.ParentId = 0;
+                    menu.Order = 0;
+                    menu.CreateAt = DateTime.Now;
+                    menu.CreateBy = Convert.ToInt32(Session["UserID"].ToString());
+                    menu.UpdateAt = DateTime.Now;
+                    menu.UpdateBy = Convert.ToInt32(Session["UserID"].ToString());
+                    menu.Status = 2; //tam thoi chua xuat ban
+                    //Them vao DB
+                    menusDAO.Insert(menu);
 
-                    TempData["message"] = new XMessage("success", "Thêm danh mục thành công");
+                    TempData["message"] = new XMessage("success", "Thêm vào menu thành công");
                 }
-
-                else//check box chưa được nhấn
+                else
                 {
-                    TempData["message"] = new XMessage("danger", "Chưa đủ thông tin cho mục tùy chọn Menu");
+                    TempData["message"] = new XMessage("danger", "Chưa đầy đủ thông tin cho menu");
                 }
             }
 
+            //tra ve trang Index
             return RedirectToAction("Index", "Menu");
         }
 
-        /////////////////////////////////////////////////////////////////////////////////////
-        // GET: Admin/Menu/Status
+        ////////////////////////////////////////////////////////////////
+        //GET: Admin/Menu/Status/5
         public ActionResult Status(int? id)
         {
             if (id == null)
@@ -200,26 +202,24 @@ namespace ProjectASP.Areas.Admin.Controllers
             return RedirectToAction("Index");
         }
 
-        /////////////////////////////////////////////////////////////////////////////////////
-        // Admin/Menus/Detail: Hien thi mot mau tin
+
+        ////////////////////////////////////////////////////////////////
+        // GET: Admin/Menu/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
-                TempData["message"] = new XMessage("danger", "Không tìm thấy Menu thất bại");
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Menus menus = menusDAO.getRow(id);
             if (menus == null)
             {
-                TempData["message"] = new XMessage("danger", "Không tìm thấy Menu thất bại");
                 return HttpNotFound();
             }
             return View(menus);
         }
 
-        /////////////////////////////////////////////////////////////////////////////////////
-        // Admin/Menu/Edit: Thay doi mot mau tin
+        // GET: Admin/Menu/Edit/5
         public ActionResult Edit(int? id)
         {
 
@@ -280,8 +280,7 @@ namespace ProjectASP.Areas.Admin.Controllers
             return View(menus);
         }
 
-        /////////////////////////////////////////////////////////////////////////////////////
-        // GET: Admin/Menu/DelTrash/5:Thay doi trang thai cua mau tin = 0
+        // GET: Admin/Menu/Deltrash
         public ActionResult DelTrash(int? id)
         {
             //khi nhap nut thay doi Status cho mot mau tin
@@ -303,16 +302,13 @@ namespace ProjectASP.Areas.Admin.Controllers
             //khi cap nhat xong thi chuyen ve Index
             return RedirectToAction("Index", "Menu");
         }
-
-        /////////////////////////////////////////////////////////////////////////////////////
-        // GET: Admin/Menus/Trash/5:Hien thi cac mau tin có gia tri la 0
         public ActionResult Trash(int? id)
         {
             return View(menusDAO.getList("Trash"));
         }
 
         /////////////////////////////////////////////////////////////////////////////////////
-        // GET: Admin/Menu/Recover/5:Thay doi trang thai cua mau tin
+        // GET: Admin/Menu/Undo/5:Thay doi trang thai cua mau tin
         public ActionResult Undo(int? id)
         {
             if (id == null)
@@ -350,8 +346,6 @@ namespace ProjectASP.Areas.Admin.Controllers
             //khi cap nhat xong thi chuyen ve Trash de phuc hoi tiep
             return RedirectToAction("Trash");
         }
-
-        /////////////////////////////////////////////////////////////////////////////////////
         // GET: Admin/Menu/Delete/5
         public ActionResult Delete(int? id)
         {
@@ -366,8 +360,7 @@ namespace ProjectASP.Areas.Admin.Controllers
             }
             return View(menus);
         }
-
-        // POST: Admin/Menu/Delete/5:Xoa mot mau tin ra khoi CSDL
+        // GET: Admin/Menus/Trash/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
