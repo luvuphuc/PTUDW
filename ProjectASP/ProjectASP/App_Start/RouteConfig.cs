@@ -37,15 +37,15 @@ namespace ProjectASP
             //Khai bao cho URL co dinh: gio-hang
             routes.MapRoute(
                name: "Giohang",
-               url: "gio-hang",
-               defaults: new { controller = "Giohang", action = "Index", id = UrlParameter.Optional }
+               url: "cart",
+               defaults: new { controller = "Cart", action = "Index", id = UrlParameter.Optional }
            );
 
             //Khai bao cho URL co dinh: thanh-toan
             routes.MapRoute(
                name: "Thanhtoan",
                url: "thanh-toan",
-               defaults: new { controller = "Giohang", action = "ThanhToan", id = UrlParameter.Optional }
+               defaults: new { controller = "Cart", action = "ThanhToan", id = UrlParameter.Optional }
            );
 
             //Khai bao cho URL co dinh: dăng-nhap
