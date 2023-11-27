@@ -21,6 +21,7 @@ namespace ProjectASP
         {
             Session["UserID"] = "1";
             Session["MyCart"] = "";//khoi tao gia tri = NULL
+            Session["UserCustomer"] = "";
         }
     }
 }

@@ -1,5 +1,5 @@
 ﻿﻿@model IEnumerable<MyClass.Model.Menus>
-
+@using ProjectASP.Library
 <nav class="navbar navbar-expand-lg navbar-light">
     <div class="container">
         <a class="navbar-brand logo_h" href="index.html"><img src="img/logo.png" alt=""></a>
@@ -16,11 +16,21 @@
                     @Html.Action("MainMenuSub", "Module", new { @id = @item.Id });
                 }
             </ul>
-                <ul class="nav-shop">
-                    <li class="nav-item"><button><i class="ti-search"></i></button></li>
-                    <li class="nav-item"><button><i class="ti-shopping-cart"></i><span class="nav-shop__circle">3</span></button> </li>
-                    <li class="nav-item"><a class="button button-header" href="#">Buy Now</a></li>
-                </ul>
+            <ul class="nav-shop">
+                @*neu gio hang khac null*@
+                @{
+                    int soluong = 0;
+                    var cartSession = System.Web.HttpContext.Current.Session["MyCart"] as List<CartItem>;
+                    if (cartSession != null)
+                    {
+                        soluong = cartSession.Count;
+                    }
+                }
+                <li class="nav-item"><button><i class="ti-search"></i></button></li>
+                <li class="nav-item"><button><i class="ti-shopping-cart"></i><span class="nav-shop__circle">@soluong</span></button> </li>
+                <li class="nav-item"><a class="button button-header" href="~/Cart">Giỏ hàng</a></li>
+
+            </ul>
 </div>
     </div>
 </nav>

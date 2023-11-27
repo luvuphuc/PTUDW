@@ -63,6 +63,14 @@ namespace ProjectASP.Controllers
             xcart.DelCart();
             return RedirectToAction("Index", "Cart");
         }
-
+        public ActionResult ThanhToan()
+        {
+            //Kiem tra thong tin dang nhap trang nguoi dung = Khach hang
+            if (Session["UserCustomer"].Equals(""))
+            {
+                return Redirect("~/Customer/Login");//chuyen huong den URL
+            }
+            return View("ThanhToan");
+        }
     }
 }
