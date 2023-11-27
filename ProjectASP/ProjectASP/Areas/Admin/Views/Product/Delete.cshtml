@@ -1,67 +1,75 @@
 ﻿@model MyClass.Model.Products
 
 @{
-    ViewBag.Title = "Xác nhận xóa mẫu tin";
+    ViewBag.Title = "Xóa sản phẩm";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
-using (Html.BeginForm())
+@section header {
+    <link href="~/Public/css/cdn.datatables.net_1.13.6_css_jquery.dataTables.min.css" rel="stylesheet" />
+}
+
+@section footer {
+    <script src="~/Public/js/cdn.datatables.net_1.13.6_js_jquery.dataTables.min.js"></script>
+    <script>let table = new DataTable('#myTable');</script>
+}
+@using (Html.BeginForm())
 {
-@Html.AntiForgeryToken()
-<div class="wrapper">
-    <!-- Main Sidebar Container -->
+    @Html.AntiForgeryToken()
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <!-- Main content -->
-        <section class="content">
-
+        <section class="content my-2">
             <!-- Default box -->
             <div class="card">
                 <div class="card-header">
                     <div class="row">
                         <div class="col-md-6">
-                            <strong class="text-danger">XÁC NHẬN XÓA MẪU TIN</strong>
+                            <strong class="text-danger">BẠN CÓ CHẮC CHẮN XÓA MỤC NÀY?</strong>
                         </div>
                         <div class="col-md-6 text-right">
-                            <a href="@Url.Action("Index","Product")" class="btn-sm btn-primary"><i class="fa fa-arrow-left"> Quay lại</i></a>
+                            <a href="@Url.Action("Index","Product")" class="btn-sm btn-info"> <i class="fa fa-long-arrow-alt-left"></i> Quay lại</a>
                         </div>
-                    </div>
-                </div>
+                    </div><!-- /.class-row -->
+                </div><!-- /.card-header -->
                 <div class="card-body">
-                    <table class="table table-bordered table-striped">
+                    @*Hien thi noi dung thong bao ngay ben tren bang du lieu*@
+                    @Html.Partial("Message")
+                    <table class="table table-bordered table-striped" id="myTable">
                         <thead>
                             <tr>
-                                <th>@Html.DisplayNameFor(model => model.Id)</th>
+                                <th>#</th>
                                 <th>@Html.DisplayNameFor(model => model.Name)</th>
                                 <th>@Html.DisplayNameFor(model => model.CatID)</th>
                                 <th>@Html.DisplayNameFor(model => model.Supplier)</th>
                                 <th>@Html.DisplayNameFor(model => model.Image)</th>
-                                <th>@Html.DisplayNameFor(model => model.Price)</th>
                                 <th>@Html.DisplayNameFor(model => model.Amount)</th>
-                                <th>@Html.DisplayNameFor(model => model.Status)</th>
-
+                                <th>@Html.DisplayNameFor(model => model.Price)</th>
+                                <th>@Html.DisplayNameFor(model => model.SalePrice)</th>
+                                <th>@Html.DisplayNameFor(model => model.Id)</th>
+                                <th>Chức năng</th>
                             </tr>
                         </thead>
+
                         <tbody>
                             <tr>
-                                <td>@Html.DisplayFor(model => model.Id)</td>
+                                <td><input type="checkbox" name="checkid" value="" /></td>
                                 <td>@Html.DisplayFor(model => model.Name)</td>
                                 <td>@Html.DisplayFor(model => model.CatID)</td>
-                                <td>@ViewBag.Name</td>
-                                <td><img src="~/Public/img/product/@Model.Image" alt="Img" style="max-width: 100px;" /></td>
-                                <td>@Html.DisplayFor(model => model.Price)</td>
+                                <td>@Html.DisplayFor(model => model.Supplier)</td>
+                                <td><img src="~/Public/img/product/@Model.Image" alt="Img" class="img-fluid" style="max-width:100px" /></td>
                                 <td>@Html.DisplayFor(model => model.Amount)</td>
-                                <td>@Html.DisplayFor(model => model.Status)</td>
+                                <td>@Html.DisplayFor(model => model.Price)</td>
+                                <td>@Html.DisplayFor(model => model.SalePrice)</td>
+                                <td>@Html.DisplayFor(model => model.Id)</td>
+                                <td>
+                                    <button class="btn-sm btn-danger" type="submit" name="Delete"> Xóa [Delete] <i class="fa fa-trash"></i> </button>
+                                </td>
                             </tr>
-
                         </tbody>
-
                     </table>
-                    <div class="form-actions no-color mt-4">
-                        <button class="btn-sm btn-danger" type="submit" name="save">Delete<i class="fa fa-trash"></i></button>
-                    </div>
-                </div> <!-- /.card-footer-->
+                </div><!-- /.card-body -->
             </div><!-- /.card -->
         </section><!-- /.content -->
-    </div> <!-- /.content-wrapper -->
-</div><!-- ./wrapper -->
+    </div><!-- /.content-wrapper -->
+
 }

@@ -56,7 +56,7 @@
                                     <td>@Html.DisplayFor(modelItem => item.Id)</td>
                                     <td>@Html.DisplayFor(modelItem => item.Name)</td>
                                     <td>@Html.DisplayFor(modelItem => item.Slug)</td>
-                                    <td>@ViewBag.Name</td>
+                                    <td>@Html.DisplayFor(modelItem => item.ParentId)</td>
                                     <td>@Html.DisplayFor(modelItem => item.Order)</td>
                                     <td>
                                         @if (item.Status == 1)

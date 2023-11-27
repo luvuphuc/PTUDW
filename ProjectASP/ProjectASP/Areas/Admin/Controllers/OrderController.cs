@@ -16,7 +16,9 @@ namespace ProjectASP.Areas.Admin.Controllers
     public class OrderController : Controller
     {
         OrdersDAO ordersDAO = new OrdersDAO();
-
+        ProductsDAO productsDAO = new ProductsDAO();
+        CategoriesDAO categoriesDAO = new CategoriesDAO();
+        SuppliersDAO suppliersDAO = new SuppliersDAO();
         // GET: Admin/Order
         public ActionResult Index()
         {

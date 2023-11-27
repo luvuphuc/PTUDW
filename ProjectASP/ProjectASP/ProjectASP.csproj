@@ -138,6 +138,9 @@
     <Compile Include="Areas\Admin\Controllers\SliderController.cs" />
     <Compile Include="Areas\Admin\Controllers\SupplierController.cs" />
     <Compile Include="Areas\Admin\Controllers\TopicController.cs" />
+    <Compile Include="Controllers\CartController.cs" />
+    <Compile Include="Controllers\ContactController.cs" />
+    <Compile Include="Controllers\FindController.cs" />
     <Compile Include="Controllers\ModuleController.cs" />
     <Compile Include="Controllers\SiteController.cs" />
     <Compile Include="Global.asax.cs">
@@ -2657,11 +2660,6 @@
     <Content Include="Areas\Admin\Views\Supplier\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Supplier\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Supplier\Trash.cshtml" />
-    <Content Include="Areas\Admin\Views\Order\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\Order\Delete.cshtml" />
-    <Content Include="Areas\Admin\Views\Order\Details.cshtml" />
-    <Content Include="Areas\Admin\Views\Order\Edit.cshtml" />
-    <Content Include="Areas\Admin\Views\Order\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Product\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Product\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\Product\Details.cshtml" />
@@ -2771,6 +2769,18 @@
     <Content Include="Views\Site\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_LayoutAdmin.cshtml" />
     <Content Include="Views\Module\MainMenu.cshtml" />
+    <Content Include="Views\Module\Slider.cshtml" />
+    <Content Include="Views\Site\Home.cshtml" />
+    <Content Include="Views\Module\MainMenuSub_0.cshtml" />
+    <Content Include="Views\Module\MainMenuSub_1.cshtml" />
+    <Content Include="Views\Module\CategoriesList.cshtml" />
+    <Content Include="Views\Module\MenuFooter.cshtml" />
+    <Content Include="Views\Site\ProductCategory.cshtml" />
+    <Content Include="Views\Site\HomeProduct.cshtml" />
+    <Content Include="Views\Site\Product.cshtml" />
+    <Content Include="Views\Site\PostPage.cshtml" />
+    <Content Include="Views\Site\PostTopic.cshtml" />
+    <Content Include="Views\Site\ProductDetail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -2779,6 +2789,9 @@
     <Folder Include="Public\img\post\" />
     <Folder Include="Public\img\slider\" />
     <Folder Include="Public\img\supplier\" />
+    <Folder Include="Views\Cart\" />
+    <Folder Include="Views\Contact\" />
+    <Folder Include="Views\Find\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />

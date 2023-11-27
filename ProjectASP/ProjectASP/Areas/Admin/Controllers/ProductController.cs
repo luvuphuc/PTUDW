@@ -22,11 +22,12 @@ namespace ProjectASP.Areas.Admin.Controllers
         // GET: Admin/Product
         public ActionResult Index()
         {
-            var products =productsDAO.getList("Index");
-            foreach(var i in products)
+            var products = productsDAO.getList("Index");
+            foreach (var i in products)
             {
                 Suppliers supplier = suppliersDAO.getRow(i.Supplier);
-                if(supplier != null) {
+                if (supplier != null)
+                {
                     ViewBag.Name = supplier.Name;
                 }
             }
@@ -107,7 +108,7 @@ namespace ProjectASP.Areas.Admin.Controllers
                 }//ket thuc phan upload hinh anh
                 //them moi mau tin vao db
                 productsDAO.Insert(products);
-                
+
                 //thong bao trang thai thanh cong
                 TempData["message"] = new XMessage("success", "Thêm mới sản phẩm thành công");
                 return RedirectToAction("Index");
@@ -196,18 +197,17 @@ namespace ProjectASP.Areas.Admin.Controllers
         }
 
         // GET: Admin/Product/Delete/5
+        // GET: Admin/Product/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
-                TempData["message"] = new XMessage("danger", "Không tìm thấy sản phẩm");
-                return RedirectToAction("Index");
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Products products= productsDAO.getRow(id);
+            Products products = productsDAO.getRow(id);
             if (products == null)
             {
-                TempData["message"] = new XMessage("danger", "Không tìm thấy sản phẩm");
-                return RedirectToAction("Index");
+                return HttpNotFound();
             }
             return View(products);
         }
@@ -217,26 +217,26 @@ namespace ProjectASP.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
+            //Truy van mau tin theo Id
             Products products = productsDAO.getRow(id);
-            string imageName = products.Image;
 
-            // Kiểm tra và xóa file hình ảnh
-            if (!string.IsNullOrEmpty(imageName))
+            if (productsDAO.Delete(products) == 1)
             {
-                string slug = XString.Str_Slug(products.Name);
-                string fileExtension = Path.GetExtension(imageName); // Lấy phần mở rộng của tệp tin
-                string imagePath = Path.Combine(Server.MapPath("~/Public/img/product/"), slug + fileExtension);
-
-                if (System.IO.File.Exists(imagePath))
+                //duong dan den anh can xoa
+                string PathDir = "~/Public/img/product/";
+                //cap nhat thi phai xoa file cu
+                if (products.Image != null)
                 {
-                    System.IO.File.Delete(imagePath);
+                    string DelPath = Path.Combine(Server.MapPath(PathDir), products.Image);
+                    System.IO.File.Delete(DelPath);
                 }
             }
-            productsDAO.Delete(products);
-
-            TempData["message"] = new XMessage("success", "Xóa sản phẩm thành công");
+            //Thong bao thanh cong
+            TempData["message"] = new XMessage("success", "Xóa danh mục thành công");
+            //O lai trang thung rac
             return RedirectToAction("Trash");
         }
+
         public ActionResult Status(int? id)
         {
             if (id == null)
@@ -274,7 +274,7 @@ namespace ProjectASP.Areas.Admin.Controllers
                 TempData["message"] = new XMessage("danger", "Xóa mẩu tin thất bại");
                 return RedirectToAction("Index");
             }
-            Products products= productsDAO.getRow(id);
+            Products products = productsDAO.getRow(id);
             if (products == null)
             {
                 TempData["message"] = new XMessage("danger", "Xóa mẩu tin thất bại");

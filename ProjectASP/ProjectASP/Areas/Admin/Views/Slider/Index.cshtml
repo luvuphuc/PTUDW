@@ -1,24 +1,21 @@
 ﻿@model IEnumerable<MyClass.Model.Sliders>
-
 @{
     ViewBag.Title = "Trang chủ Slider";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
-@section header {
-    <link href="~/Public/css/cdn.datatables.net_1.13.6_css_jquery.dataTables.min.css" rel="stylesheet" />
+
+@section header{
+    <link href="~/Public/css/jquery.dataTables.min.css" rel="stylesheet" />
 }
 
-@section footer {
-    <script src="~/Public/js/cdn.datatables.net_1.13.6_js_jquery.dataTables.min.js"></script>
+@section footer{
+    <script src="~/Public/js/jquery.dataTables.min.js"></script>
     <script>let table = new DataTable('#myTable');</script>
 }
-
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
-
     <!-- Main content -->
     <section class="content my-2">
-
         <!-- Default box -->
         <div class="card">
             <div class="card-header">
@@ -30,7 +27,6 @@
                         <a href="@Url.Action("Create","Slider")" class="btn-sm btn-success"> <i class="fa fa-plus"></i>Thêm</a>
                         <a href="@Url.Action("Trash","Slider")" class="btn-sm btn-danger"> <i class="fa fa-trash"></i>Thùng rác</a>
                     </div>
-
                 </div>
             </div>
             <div class="card-body">
@@ -49,7 +45,6 @@
                             <th>Chức năng</th>
                         </tr>
                     </thead>
-
                     <tbody>
                         @foreach (var item in Model)
                         {
@@ -57,7 +52,7 @@
                                 <td><input type="checkbox" name="checkid" value="" /></td>
                                 <td>@Html.DisplayFor(modelItem => item.Name)</td>
                                 <td>@Html.DisplayFor(modelItem => item.URL)</td>
-                                <td><img src="~/Public/img/slider/@item.Image" alt="Img" style="max-width: 100px;" /></td>
+                                <td><img src="~/Public/img/slider/@item.Image" alt="Img" class="img-fluid" style="max-width:100px;" /></td>
                                 <td>@Html.DisplayFor(modelItem => item.Order)</td>
                                 <td>@Html.DisplayFor(modelItem => item.Position)</td>
                                 <td>@Html.DisplayFor(modelItem => item.Id)</td>
@@ -78,11 +73,7 @@
                         }
                     </tbody>
                 </table>
-                <!-- /.card-body -->
-            </div>
-        </div>
-        <!-- /.card -->
-    </section>
-    <!-- /.content -->
-</div>
-<!-- /.content-wrapper -->
+            </div><!-- /.card-body -->
+        </div><!-- /.card -->
+    </section><!-- /.content -->
+</div><!-- /.content-wrapper -->

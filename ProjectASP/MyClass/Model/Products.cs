@@ -34,7 +34,7 @@ namespace MyClass.Model
         public decimal SalePrice { get; set; }
         [Required(ErrorMessage = "Số lượng không được để trống")]
         [Display(Name = "Số lượng")]
-        public decimal Amount { get; set; }
+        public int Amount { get; set; }
         [Required(ErrorMessage = "Mô tả không được để trống")]
         [Display(Name = "Mô tả")]
         public string MetaDesc { get; set; }
