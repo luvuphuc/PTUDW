@@ -128,8 +128,11 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Code\SessionHelper.cs" />
+    <Compile Include="Areas\Admin\Code\UserSession.cs" />
     <Compile Include="Areas\Admin\Controllers\CategoryController.cs" />
     <Compile Include="Areas\Admin\Controllers\DashboardController.cs" />
+    <Compile Include="Areas\Admin\Controllers\LoginController.cs" />
     <Compile Include="Areas\Admin\Controllers\MenuController.cs" />
     <Compile Include="Areas\Admin\Controllers\OrderController.cs" />
     <Compile Include="Areas\Admin\Controllers\PageController.cs" />
@@ -138,8 +141,8 @@
     <Compile Include="Areas\Admin\Controllers\SliderController.cs" />
     <Compile Include="Areas\Admin\Controllers\SupplierController.cs" />
     <Compile Include="Areas\Admin\Controllers\TopicController.cs" />
+    <Compile Include="Areas\Admin\Model\LoginModel.cs" />
     <Compile Include="Controllers\CartController.cs" />
-    <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\FindController.cs" />
     <Compile Include="Controllers\ModuleController.cs" />
@@ -2699,6 +2702,7 @@
     <Content Include="Areas\Admin\Views\Slider\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Slider\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Slider\Trash.cshtml" />
+    <Content Include="Areas\Admin\Views\Login\Index.cshtml" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -2787,6 +2791,7 @@
     <Content Include="Views\Cart\Index.cshtml" />
     <Content Include="Views\Customer\Login.cshtml" />
     <Content Include="Views\Cart\ThanhToan.cshtml" />
+    <Content Include="Views\Customer\Register.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -2795,7 +2800,6 @@
     <Folder Include="Public\img\post\" />
     <Folder Include="Public\img\slider\" />
     <Folder Include="Public\img\supplier\" />
-    <Folder Include="Views\Contact\" />
     <Folder Include="Views\Find\" />
   </ItemGroup>
   <ItemGroup>
@@ -2826,6 +2830,10 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Model\Model.csproj">
+      <Project>{fa20ff3a-18e0-43b9-998c-13227824fe3d}</Project>
+      <Name>Model</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MyClass\MyClass.csproj">
       <Project>{dcb6ab1b-3a5b-4a6d-a841-0b3362c2f484}</Project>
       <Name>MyClass</Name>

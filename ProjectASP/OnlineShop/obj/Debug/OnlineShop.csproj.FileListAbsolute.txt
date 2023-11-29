@@ -1,0 +1,12 @@
+C:\Users\Vu Phuc\Documents\GitHub\PTUDW\ProjectASP\OnlineShop\bin\Debug\OnlineShop.dll.config
+C:\Users\Vu Phuc\Documents\GitHub\PTUDW\ProjectASP\OnlineShop\bin\Debug\OnlineShop.dll
+C:\Users\Vu Phuc\Documents\GitHub\PTUDW\ProjectASP\OnlineShop\bin\Debug\OnlineShop.pdb
+C:\Users\Vu Phuc\Documents\GitHub\PTUDW\ProjectASP\OnlineShop\bin\Debug\EntityFramework.dll
+C:\Users\Vu Phuc\Documents\GitHub\PTUDW\ProjectASP\OnlineShop\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Vu Phuc\Documents\GitHub\PTUDW\ProjectASP\OnlineShop\bin\Debug\EntityFramework.xml
+C:\Users\Vu Phuc\Documents\GitHub\PTUDW\ProjectASP\OnlineShop\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Vu Phuc\Documents\GitHub\PTUDW\ProjectASP\OnlineShop\obj\Debug\OnlineShop.csproj.AssemblyReference.cache
+C:\Users\Vu Phuc\Documents\GitHub\PTUDW\ProjectASP\OnlineShop\obj\Debug\OnlineShop.csproj.CoreCompileInputs.cache
+C:\Users\Vu Phuc\Documents\GitHub\PTUDW\ProjectASP\OnlineShop\obj\Debug\OnlineShop.csproj.CopyComplete
+C:\Users\Vu Phuc\Documents\GitHub\PTUDW\ProjectASP\OnlineShop\obj\Debug\OnlineShop.dll
+C:\Users\Vu Phuc\Documents\GitHub\PTUDW\ProjectASP\OnlineShop\obj\Debug\OnlineShop.pdb

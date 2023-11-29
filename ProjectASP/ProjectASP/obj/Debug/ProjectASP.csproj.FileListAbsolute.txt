@@ -84,3 +84,6 @@ C:\Users\Vu Phuc\Documents\GitHub\PTUDW\ProjectASP\ProjectASP\bin\EntityFramewor
 C:\Users\Vu Phuc\Documents\GitHub\PTUDW\ProjectASP\ProjectASP\bin\MyClass.dll
 C:\Users\Vu Phuc\Documents\GitHub\PTUDW\ProjectASP\ProjectASP\bin\MyClass.pdb
 C:\Users\Vu Phuc\Documents\GitHub\PTUDW\ProjectASP\ProjectASP\bin\MyClass.dll.config
+C:\Users\Vu Phuc\Documents\GitHub\PTUDW\ProjectASP\ProjectASP\bin\Model.dll
+C:\Users\Vu Phuc\Documents\GitHub\PTUDW\ProjectASP\ProjectASP\bin\Model.pdb
+C:\Users\Vu Phuc\Documents\GitHub\PTUDW\ProjectASP\ProjectASP\bin\Model.dll.config

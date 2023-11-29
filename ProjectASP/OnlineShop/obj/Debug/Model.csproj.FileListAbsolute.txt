@@ -1,0 +1,4 @@
+C:\Users\Vu Phuc\Documents\GitHub\PTUDW\ProjectASP\OnlineShop\obj\Debug\Model.csproj.AssemblyReference.cache
+C:\Users\Vu Phuc\Documents\GitHub\PTUDW\ProjectASP\OnlineShop\obj\Debug\Model.csproj.CoreCompileInputs.cache
+C:\Users\Vu Phuc\Documents\GitHub\PTUDW\ProjectASP\OnlineShop\obj\Debug\OnlineShop.dll
+C:\Users\Vu Phuc\Documents\GitHub\PTUDW\ProjectASP\OnlineShop\obj\Debug\OnlineShop.pdb

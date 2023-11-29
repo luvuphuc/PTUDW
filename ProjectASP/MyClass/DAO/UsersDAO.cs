@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -52,7 +53,10 @@ namespace MyClass.Model
                 return db.Users.Find(id);
             }
         }
-
+        public Users getRow(string username)
+        {
+            return db.Users.Where(m=> m.UserName ==  username).FirstOrDefault();
+        }
         /////////////////////////////////////////////////////////////////////////////////////
         //Kiem tra thong tin dang nhap
         public Users getRow(string username, string role)
@@ -62,7 +66,6 @@ namespace MyClass.Model
             .Where(m => m.Status == 1 && m.Role == role && (m.UserName == username || m.Email == username))
             .FirstOrDefault();
         }
-
         /////////////////////////////////////////////////////////////////////////////////////
         ///Them moi mot mau tin
         public int Insert(Users row)
