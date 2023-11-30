@@ -15,7 +15,7 @@ namespace MyClass.Model
         public int Id { get; set; }
         [Required(ErrorMessage = "Chủ đề bài viết không được để trống")]
         [Display(Name = "Chủ đề bài viết")]
-        public int? TopID { get; set; }
+        public int TopID { get; set; }
         [Required(ErrorMessage = "Tên bài viết không được để trống")]
         [Display(Name = "Tên bài viết")]
         public string Title { get; set; }

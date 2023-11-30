@@ -51,10 +51,15 @@ namespace ProjectASP
             //Khai bao cho URL co dinh: dăng-nhap
             routes.MapRoute(
                name: "DangNhap",
-               url: "Login",
-               defaults: new { controller = "Khachhang", action = "DangNhap", id = UrlParameter.Optional }
+               url: "dang-nhap",
+               defaults: new { controller = "Customer", action = "Login", id = UrlParameter.Optional }
            );
-
+            //Khai bao cho URL co dinh: dăng-ky
+            routes.MapRoute(
+               name: "DangKy",
+               url: "dang-ky",
+               defaults: new { controller = "Customer", action = "Register", id = UrlParameter.Optional }
+           );
             //Khai bao cho URL co dinh: tim-kiem
             routes.MapRoute(
                name: "Timkiem",

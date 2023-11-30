@@ -68,7 +68,7 @@ namespace ProjectASP.Controllers
             //Kiem tra thong tin dang nhap trang nguoi dung = Khach hang
             if (Session["UserCustomer"].Equals(""))
             {
-                return Redirect("~/Customer/Login");//chuyen huong den URL
+                return Redirect("~/dang-nhap");//chuyen huong den URL
             }
             return View("ThanhToan");
         }

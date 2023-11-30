@@ -39,7 +39,7 @@
                             <th>#</th>
                             <th>@Html.DisplayNameFor(model => model.Title)</th>
                             <th>@Html.DisplayNameFor(model => model.PostType)</th>
-                            <th>@Html.DisplayNameFor(model => model.Image)</th>
+                            <th class="col-1">@Html.DisplayNameFor(model => model.Image)</th>
                             <th>@Html.DisplayNameFor(model => model.Id)</th>
                             <th>Chức năng</th>
                         </tr>
@@ -59,13 +59,13 @@
                                 <td>
                                     @if (item.Status == 1)
                                     {
-                                        <a href="@Url.Action(" Status","Page",new{id=item.Id })" class="btn-sm btn-success"> <i class="fa fa-toggle on"></i></a>
+                                        <a href="@Url.Action("Status","Page",new{id=item.Id })" class="btn-sm btn-success"><i class="fa fa-toggle-on"></i></a>
                                     }
                                     else
                                     {
-                                        <a href="@Url.Action(" Status","Page",new{id=item.Id })" class="btn-sm btn-danger"> <i class="fa fa-toggle-off"></i></a>
+                                        <a href="@Url.Action("Status","Page",new{id=item.Id })" class="btn-sm btn-danger"><i class="fa fa-toggle-off"></i></a>
                                     }
-                                    <a href="@Url.Action(" Details","Page", new { id=item.Id })" class="btn-sm btn-primary"> <i class="fa fa-eye"></i></a>
+                                    <a href="@Url.Action(" Details","Page", new { id=item.Id })" class="btn-sm btn-primary"><i class="fa fa-eye"></i></a>
                                     <a href="@Url.Action(" Edit","Page", new { id=item.Id })" class="btn-sm btn-info"> <i class="fa fa-edit"></i></a>
                                     <a href="@Url.Action(" DelTrash","Page", new { id=item.Id })" class="btn-sm btn-danger"> <i class="fa fa-trash"></i></a>
                                 </td>

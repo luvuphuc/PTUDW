@@ -22,6 +22,7 @@ namespace ProjectASP.Areas.Admin.Controllers
         //INDEX
         public ActionResult Index()
         {
+            List<Categories> ls = categoriesDAO.getList("Index");
             return View(categoriesDAO.getList("Index"));
         }
 

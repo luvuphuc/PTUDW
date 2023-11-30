@@ -22,15 +22,15 @@ namespace ProjectASP.Areas.Admin.Controllers
         //doi voi page thi khong co chu de:
         //TopicsDAO topicsDAO = new TopicsDAO();
 
-   
-        // Admin/Post/Index
+        /////////////////////////////////////////////////////////////////////////////////////
+        // Admin/Post/Index: Tra ve danh sach cac mau tin
         public ActionResult Index()
         {
             return View(postsDAO.getList("Index", "Page"));//hien thi toan bo danh sach loai SP
         }
 
-     
-        // GET: Admin/Page/Create
+        /////////////////////////////////////////////////////////////////////////////////////
+        // GET: Admin/Page/Create: Them moi mot mau tin
         public ActionResult Create()
         {
             //doi voi page thi khong co chu de:
@@ -47,6 +47,8 @@ namespace ProjectASP.Areas.Admin.Controllers
             {
                 //Xu ly cho muc Slug
                 posts.Slug = XString.Str_Slug(posts.Title);
+                //chuyen doi dua vao truong Name de loai bo dau, khoang cach = dau -
+
                 //xu ly cho phan upload hình ảnh
                 var img = Request.Files["img"];//lay thong tin file
                 if (img.ContentLength != 0)
@@ -97,20 +99,27 @@ namespace ProjectASP.Areas.Admin.Controllers
             return View(posts);
         }
 
+        /////////////////////////////////////////////////////////////////////////////////////
         // GET: Admin/Page/Staus/5:Thay doi trang thai cua mau tin
         public ActionResult Status(int? id)
         {
             if (id == null)
             {
+                //Thong bao that bai
                 TempData["message"] = new XMessage("danger", "Cập nhật trạng thái thất bại");
+                //chuyen huong trang
                 return RedirectToAction("Index", "Page");
             }
 
+            //khi nhap nut thay doi Status cho mot mau tin
             Posts posts = postsDAO.getRow(id);
+            //kiem tra id cua posts co ton tai?
             if (posts == null)
             {
                 //Thong bao that bai
                 TempData["message"] = new XMessage("danger", "Cập nhật trạng thái thất bại");
+
+                //chuyen huong trang
                 return RedirectToAction("Index", "Page");
             }
             //thay doi trang thai Status tu 1 thanh 2 va nguoc lai
@@ -125,8 +134,12 @@ namespace ProjectASP.Areas.Admin.Controllers
 
             //Thong bao thanh cong
             TempData["message"] = new XMessage("success", "Cập nhật trạng thái thành công");
+
+            //khi cap nhat xong thi chuyen ve Index
             return RedirectToAction("Index", "Page");
         }
+
+        /////////////////////////////////////////////////////////////////////////////////////
         // Admin/Post/Detail: Hien thi mot mau tin
         public ActionResult Details(int? id)
         {
@@ -142,7 +155,8 @@ namespace ProjectASP.Areas.Admin.Controllers
             return View(posts);
         }
 
-        // GET: Admin/Page/Edit/5
+        /////////////////////////////////////////////////////////////////////////////////////
+        // GET: Admin/Page/Edit/5: Cap nhat mau tin
         public ActionResult Edit(int? id)
         {
             //doi voi page thi khong co chu de:
@@ -163,7 +177,7 @@ namespace ProjectASP.Areas.Admin.Controllers
             return View(posts);
         }
 
-        // POST: Admin/Page/Edit/5
+        // POST: Admin/Page/Edit/5: Cap nhat mau tin
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(Posts posts)
@@ -224,33 +238,39 @@ namespace ProjectASP.Areas.Admin.Controllers
             return View(posts);
         }
 
-    
-        // GET: Admin/Page/DelTrash/5
+        /////////////////////////////////////////////////////////////////////////////////////
+        // GET: Admin/Page/DelTrash/5:Thay doi trang thai cua mau tin = 0
         public ActionResult DelTrash(int? id)
         {
+            //khi nhap nut thay doi Status cho mot mau tin
             Posts posts = postsDAO.getRow(id);
+
             //thay doi trang thai Status tu 1,2 thanh 0
             posts.Status = 0;
-            //cap nhat gia tri
+
+            //cap nhat gia tri cho UpdateAt/By
             posts.UpdateBy = Convert.ToInt32(Session["UserId"].ToString());
             posts.UpdateAt = DateTime.Now;
-            //update
+
+            //Goi ham Update trong PostDAO
             postsDAO.Update(posts);
 
             //Thong bao thanh cong
             TempData["message"] = new XMessage("success", "Xóa trang đơn thành công");
+
+            //khi cap nhat xong thi chuyen ve Index
             return RedirectToAction("Index", "Page");
         }
 
         /////////////////////////////////////////////////////////////////////////////////////
-        // GET: Admin/Posts/Trash/5
+        // GET: Admin/Posts/Trash/5:Hien thi cac mau tin có gia tri la 0
         public ActionResult Trash(int? id)
         {
             return View(postsDAO.getList("Trash", "page"));
         }
 
         /////////////////////////////////////////////////////////////////////////////////////
-        // GET: Admin/Page/Recover/5
+        // GET: Admin/Page/Recover/5:Chuyen trang thai Status = 0 thanh =2
         public ActionResult Undo(int? id)
         {
             if (id == null)
@@ -278,6 +298,8 @@ namespace ProjectASP.Areas.Admin.Controllers
             //cap nhat gia tri cho UpdateAt/By
             posts.UpdateBy = Convert.ToInt32(Session["UserId"].ToString());
             posts.UpdateAt = DateTime.Now;
+
+            //Goi ham Update trong postsDAO
             postsDAO.Update(posts);
 
             //Thong bao thanh cong
@@ -329,7 +351,7 @@ namespace ProjectASP.Areas.Admin.Controllers
 
             //Thong bao thanh cong
             TempData["message"] = new XMessage("success", "Xóa danh mục thành công");
-            //Ở lai trang thung rac
+            //O lai trang thung rac
             return RedirectToAction("Trash");
         }
     }
