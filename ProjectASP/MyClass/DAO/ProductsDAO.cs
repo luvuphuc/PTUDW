@@ -256,5 +256,9 @@ namespace MyClass.DAO
                 .ToList();
             return list;
         }
+        public List<Products> getProductSup( int id)
+        {
+            return db.Products.Where(p => p.Supplier == id).ToList();
+        }
     }
 }

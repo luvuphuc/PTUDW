@@ -60,7 +60,12 @@ namespace ProjectASP.Controllers
             List<Menus> list = menusDAO.getListByParentId(0, "Footer");
             return View("MenuFooter", list);
         }
-
+        public ActionResult SupList()
+        {
+            SuppliersDAO suppliersDAO = new SuppliersDAO();
+            List<Suppliers> list = suppliersDAO.getList("Index");
+            return View("SupList", list);
+        }
 
     }
 }

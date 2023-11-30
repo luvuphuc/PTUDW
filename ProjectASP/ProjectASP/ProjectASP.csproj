@@ -315,6 +315,7 @@
     <Content Include="Public\img\instagram\ins-6.jpg" />
     <Content Include="Public\img\login.jpg" />
     <Content Include="Public\img\logo.png" />
+    <Content Include="Public\img\logo.svg" />
     <Content Include="Public\img\product\card.jpg" />
     <Content Include="Public\img\product\product-sm-1.png" />
     <Content Include="Public\img\product\product-sm-2.png" />
@@ -2794,6 +2795,8 @@
     <Content Include="Views\Cart\ThanhToan.cshtml" />
     <Content Include="Views\Customer\Register.cshtml" />
     <Content Include="Views\TimKiem\Index.cshtml" />
+    <Content Include="Views\Site\SupPage.cshtml" />
+    <Content Include="Views\Module\SupList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

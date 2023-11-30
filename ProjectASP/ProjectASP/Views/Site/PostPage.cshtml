@@ -34,7 +34,7 @@
                             </div>
                         </div>
 
-                        <div class="col-lg-9 col-md-9 blog_details">
+                        <div class="col-lg-12 col-md-9 blog_details d-flex align-items-center justify-content-center">
                             @Model.Detail
                         </div>
                     </div>
@@ -46,9 +46,11 @@
                             <ul class="list cat-list">
                                 <li>
                                     <a href="#" class="d-flex justify-content-between">
-                                        <p>Technology</p>
-                                        <p>37</p>
+                                        <p>@Model.Title</p>
                                     </a>
+                                </li>
+                                <li>
+                                    <p>@Model.MetaDesc</p>
                                 </li>
                             </ul>
                             <div class="br"></div>

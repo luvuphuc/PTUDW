@@ -43,6 +43,10 @@ namespace ProjectASP.Controllers
                             {
                                 return this.PostPage(slug);
                             }
+                        case "supplier":
+                            {
+                                return this.SupPage(slug);
+                            }
                         default:
                             {
                                 return this.Error404(slug);
@@ -56,7 +60,7 @@ namespace ProjectASP.Controllers
                     //slug co trong bang Post voi PostType==post?
                     ProductsDAO productsDAO = new ProductsDAO();
                     PostsDAO postsDAO = new PostsDAO();
-
+                    SuppliersDAO suppliersDAO = new SuppliersDAO();
                     //tim slug co trong bang Products
                     Products products = productsDAO.getRow(slug);
                     if (products != null)
@@ -72,6 +76,11 @@ namespace ProjectASP.Controllers
                         }
                         else
                         {
+                            Suppliers supplier = suppliersDAO.getRow(slug);
+                            if(supplier != null)
+                            {
+                                return this.SupPage(slug);
+                            }
                             return this.Error404(slug);
                         }
                     }
@@ -148,6 +157,8 @@ namespace ProjectASP.Controllers
         //Site/PostTopic
         public ActionResult PostTopic(string slug)
         {
+            TopicsDAO topicsDAO = new TopicsDAO();
+            Topics topics = topicsDAO.getRow(slug);
             return View("PostTopic");
         }
 
@@ -166,7 +177,15 @@ namespace ProjectASP.Controllers
         {
             return View("Error404");
         }
-
+        public ActionResult SupPage(string slug)
+        {
+            SuppliersDAO suppliersDAO = new SuppliersDAO();
+            Suppliers suppliers = suppliersDAO.getRow(slug);
+            ViewBag.Supplier = suppliers;
+            ProductsDAO productsDAO = new ProductsDAO();
+            List<Products> list = productsDAO.getProductSup(suppliers.Id);
+            return View("SupPage", list);
+        }
         /////////////////////////////////////////////////////////////////////////////
         //Product/Details
         public ActionResult ProductDetail(string slug)

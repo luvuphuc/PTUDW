@@ -23,10 +23,16 @@
                         <h3>Create an account</h3>
                         <form class="row login_form" action="#/" id="register_form">
                             <div class="col-md-12 form-group">
+                                <input type="text" class="form-control" id="fullname" name="fullname" placeholder="Full Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Full Name'">
+                            </div>
+                            <div class="col-md-12 form-group">
                                 <input type="text" class="form-control" id="name" name="name" placeholder="Username" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Username'">
                             </div>
                             <div class="col-md-12 form-group">
                                 <input type="text" class="form-control" id="email" name="email" placeholder="Email Address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email Address'">
+                            </div>
+                            <div class="col-md-12 form-group">
+                                <input type="text" class="form-control" id="phone" name="phone" placeholder="Phone" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Phone'">
                             </div>
                             <div class="col-md-12 form-group">
                                 <input type="text" class="form-control" id="password" name="password" placeholder="Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'">
@@ -38,9 +44,10 @@
                                 </div>
                             </div>
                             <div class="col-md-12 form-group">
-                                <button type="submit" value="submit" class="button button-register w-100">Register</button>
+                                <button type="submit" value="submit" name="register" class="button button-register w-100">Register</button>
                             </div>
                         </form>
+                        <h4>@ViewBag.Err</h4>
                     </div>
                 </div>
             </div>

@@ -265,7 +265,7 @@ namespace ProjectASP.Areas.Admin.Controllers
                 TempData["message"] = new XMessage("danger", "Phục hồi danh mục thất bại");
 
                 //chuyen huong trang
-                return RedirectToAction("Index", "Page");
+                return RedirectToAction("Index", "Slider");
             }
             //thay doi trang thai Status = 2
             sliders.Status = 2;

@@ -1,4 +1,6 @@
-﻿using MyClass.Model;
+﻿using MyClass.DAO;
+using MyClass.Model;
+using ProjectASP.Library;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -46,37 +48,39 @@ namespace ProjectASP.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult Register(FormCollection field)
+        public ActionResult Register(FormCollection form)
         {
-            UsersDAO usersDAO=new UsersDAO();
-            String fullname = field["fullname"];
-            String email = field["email"];
-            String phone = field["phone"];
-            String username = field["username"];
-            String password = field["password"];
-            Users row_user = usersDAO.getRow(username);
-            String strErr = "";
-            if(row_user  == null)
+            if (!string.IsNullOrEmpty(form["register"]))//nut ThemCategory duoc nhan
             {
+                UsersDAO usersDAO = new UsersDAO();
+                String fullname = form["fullname"];
+                String email = form["email"];
+                String phone = form["phone"];
+                String username = form["username"];
+                String password = form["password"];
+                Users row_user = usersDAO.getRow(username);
                 //xu ly tu dong cho 1 so truong
-                row_user.Status = 1;
-                row_user.Role = "customer";
-                row_user.CreateAt = DateTime.Now;
-                // xu ly cac truong nhap vao
-                row_user.Phone = phone;
-                row_user.Email = email;
-                row_user.Phone = phone;
-                row_user.UserName = username;
-                row_user.Password = password;
-                usersDAO.Insert(row_user);
-                return RedirectToAction("Login", "Customer");
+                if(row_user != null)
+                {
+                    ViewBag.Err = "Tài khoản đã tồn tại";
+                }
+                else
+                {
+                    Users users = new Users();
+                    users.FullName = fullname;
+                    users.Status = 1;
+                    users.Role = "customer";
+                    // xu ly cac truong nhap vao
+                    users.Phone = phone;
+                    users.Email = email;
+                    users.Gender = "1";
+                    users.UserName = username;
+                    users.Password = password;
+                    usersDAO.Insert(users);
+                    ViewBag.Err = "Tạo tài khoản thành công";
+                }
             }
-            else
-            {
-                strErr = "Tên đăng nhập đã tồn tại";
-                ViewBag.Error = "<span class='text-danger'>" + strErr + "</div";
-                return View("Register");
-            }
+            return View();
         }
     }
 }

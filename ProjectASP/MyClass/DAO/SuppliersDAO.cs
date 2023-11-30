@@ -52,7 +52,12 @@ namespace MyClass.DAO
                 return db.Suppliers.Find(id);
             }
         }
-
+        public Suppliers getRow(string slug)
+        {
+            return db.Suppliers
+                .Where(m => m.Slug == slug && m.Status == 1)
+                .FirstOrDefault();
+        }
 
         // Create 
         public int Insert(Suppliers row)
