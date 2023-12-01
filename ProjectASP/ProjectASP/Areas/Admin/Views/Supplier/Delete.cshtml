@@ -32,7 +32,7 @@
                                 <tr>
                                     <th>@Html.DisplayNameFor(model => model.Id)</th>
                                     <th>@Html.DisplayNameFor(model => model.Name)</th>
-                                    <th>@Html.DisplayNameFor(model => model.Image)</th>
+                                    <th class="col-md-1">@Html.DisplayNameFor(model => model.Image)</th>
                                     <th>@Html.DisplayNameFor(model => model.Slug)</th>
                                     <th>@Html.DisplayNameFor(model => model.Order)</th>
                                     <th>@Html.DisplayNameFor(model => model.FullName)</th>
@@ -47,7 +47,7 @@
                                 <tr>
                                     <td>@Html.DisplayFor(modelItem => modelItem.Id)</td>
                                     <td>@Html.DisplayFor(modelItem => modelItem.Name)</td>
-                                    <td><img src="~/Public/img/supplier/@Model.Image" alt="Img" style="max-width: 100px;" /></td>
+                                    <td><img src="~/Public/img/supplier/@Model.Image" alt="Img" class="img-fluid" /></td>
                                     <td>@Html.DisplayFor(modelItem => modelItem.Slug)</td>
                                     <td>@Html.DisplayFor(modelItem => modelItem.Order)</td>
                                     <td>@Html.DisplayFor(modelItem => modelItem.FullName)</td>

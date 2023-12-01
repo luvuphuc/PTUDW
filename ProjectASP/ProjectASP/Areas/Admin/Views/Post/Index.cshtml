@@ -42,7 +42,7 @@
                             <th>@Html.DisplayNameFor(model => model.Title)</th>
                             <th>@Html.DisplayNameFor(model => model.TopID)</th>
                             <th>@Html.DisplayNameFor(model => model.PostType)</th>
-                            <th>@Html.DisplayNameFor(model => model.Image)</th>
+                            <th class="col-md-1">@Html.DisplayNameFor(model => model.Image)</th>
                             <th>@Html.DisplayNameFor(model => model.Id)</th>
                             <th>Chức năng</th>
                         </tr>
@@ -56,7 +56,7 @@
                                 <td>@Html.DisplayFor(modelItem => item.Title)</td>
                                 <td>@Html.DisplayFor(modelItem => item.TopID)</td>
                                 <td>@Html.DisplayFor(modelItem => item.PostType)</td>
-                                <td><img src="~/Public/img/post/@item.Image" alt="Img" style="max-width: 100px;" /></td>
+                                <td><img src="~/Public/img/post/@item.Image" alt="Img" /></td>
                                 <td>@Html.DisplayFor(modelItem => item.Id)</td>
                                 <td>
                                     @if (item.Status == 1)

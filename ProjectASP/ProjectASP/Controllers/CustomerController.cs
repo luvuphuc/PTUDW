@@ -58,7 +58,7 @@ namespace ProjectASP.Controllers
                 String phone = form["phone"];
                 String username = form["username"];
                 String password = form["password"];
-                Users row_user = usersDAO.getRow(username);
+                Users row_user = usersDAO.getRow(username,"customer");
                 //xu ly tu dong cho 1 so truong
                 if(row_user != null)
                 {

@@ -33,5 +33,16 @@ namespace ProjectASP.Properties {
                 return ((string)(this["StrConnect"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=LAPTOP-IN4JSQRS\\SQLEXPRESS;Initial Catalog=Onlineshop;Integrated Secu" +
+            "rity=True")]
+        public string OnlineShopDbContext {
+            get {
+                return ((string)(this["OnlineShopDbContext"]));
+            }
+        }
     }
 }

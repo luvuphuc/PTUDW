@@ -53,10 +53,6 @@ namespace MyClass.Model
                 return db.Users.Find(id);
             }
         }
-        public Users getRow(string username)
-        {
-            return db.Users.Where(m=> m.UserName ==  username).FirstOrDefault();
-        }
         /////////////////////////////////////////////////////////////////////////////////////
         //Kiem tra thong tin dang nhap
         public Users getRow(string username, string role)

@@ -34,7 +34,7 @@
                             <th>@Html.DisplayNameFor(model => model.Title)</th>
                             <th>@Html.DisplayNameFor(model => model.TopID)</th>
                             <th>@Html.DisplayNameFor(model => model.PostType)</th>
-                            <th>@Html.DisplayNameFor(model => model.Image)</th>
+                            <th class="col-md-1">@Html.DisplayNameFor(model => model.Image)</th>
                             <th>@Html.DisplayNameFor(model => model.Id)</th>
 
                         </tr>
@@ -46,7 +46,7 @@
                             <td>@Html.DisplayFor(model => model.Title)</td>
                             <td>@Html.DisplayFor(model => model.TopID)</td>
                             <td>@Html.DisplayFor(model => model.PostType)</td>
-                            <td><img src="~/Public/img/post/@Model.Image" alt="Img" style="max-width: 100px;" /></td>
+                            <td><img src="~/Public/img/post/@Model.Image" alt="Img" /></td>
                             <td>@Html.DisplayFor(model => model.Id)</td>
                         </tr>
                     </tbody>

@@ -12,7 +12,7 @@
     <link href="~/Public/dist/css/adminlte.min.css" rel="stylesheet" />
     <!-- Bootstrap tu dinh  nghia-->
     <link href="~/Public/css/LayoutAdmin.css" rel="stylesheet" />
-
+    <link rel="icon" href="~/Public/img/logo.svg" type="image/png">
     @*Khu vuc header*@
     @RenderSection("header", required: false)
 </head>
@@ -31,7 +31,7 @@
                     <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
-                    <a href="../../index3.html" class="nav-link">Home</a>
+                    <a href="#" class="nav-link">Home</a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
                     <a href="#" class="nav-link">Contact</a>
@@ -57,8 +57,8 @@
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
             <a href="@Url.Action("Index","Link")" class="brand-link">
-                <img src="~/Public/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-                <span class="brand-text font-weight-light">AdminLTE 3</span>
+                <img src="~/Public/img/logo.svg" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+                <span class="brand-text font-weight-light">ADMIN ANEX</span>
             </a>
 
             <!-- Sidebar -->
@@ -69,7 +69,7 @@
                         <img src="~/Public/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
                     </div>
                     <div class="info">
-                        <a href="#" class="d-block">Alexander Pierce</a>
+                        <a href="#" class="d-block">Lữ Vũ Phúc</a>
                     </div>
                 </div>
 
@@ -192,13 +192,6 @@
         </aside>
 
         @RenderBody()
-
-        <footer class="main-footer">
-            <div class="float-right d-none d-sm-block">
-                <b>Version</b> 3.1.0
-            </div>
-            <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
-        </footer>
 
         <!-- Control Sidebar -->
         <aside class="control-sidebar control-sidebar-dark">

@@ -27,11 +27,11 @@ namespace ProjectASP.Areas.Admin.Controllers
             if (result && ModelState.IsValid)
             {
                 SessionHelper.SetSession(new UserSession() { UserName = model.Username });
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index","Dashboard");
             }
             else
             {
-                ModelState.AddModelError("", "Tên đăng nhập và mật khẩu không đúng");
+                ModelState.AddModelError("", "Tên đăng nhập hoặc mật khẩu không đúng");
             }
             return View(model);
         }

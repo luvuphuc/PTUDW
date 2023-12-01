@@ -36,7 +36,7 @@
                                 <th>@Html.DisplayNameFor(model => model.Order)</th>
                                 <th>@Html.DisplayNameFor(model => model.Email)</th>
                                 <th>@Html.DisplayNameFor(model => model.Phone)</th>
-                                <th>@Html.DisplayNameFor(model => model.Image)</th>
+                                <th class="col-md-1">@Html.DisplayNameFor(model => model.Image)</th>
                                 <th>@Html.DisplayNameFor(model => model.Status)</th>
                                 
                             </tr>
@@ -50,7 +50,7 @@
                                 <td>@Html.DisplayFor(model => model.Order)</td>
                                 <td>@Html.DisplayFor(model => model.Email)</td>
                                 <td>@Html.DisplayFor(model => model.Phone)</td>
-                                <td><img src="~/Public/img/supplier/@Model.Image" alt="Img" style="max-width: 100px;" /></td>
+                                <td><img src="~/Public/img/supplier/@Model.Image" alt="Img" class="img-fluid"/></td>
                                 <td>@Html.DisplayFor(model => model.Status)</td>
                             </tr>
 

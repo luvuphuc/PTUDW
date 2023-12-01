@@ -320,9 +320,7 @@ namespace ProjectASP.Areas.Admin.Controllers
                     string DelPath = Path.Combine(Server.MapPath(PathDir), sliders.Image);
                     System.IO.File.Delete(DelPath);
                 }
-                
             }
-            slidersDAO.Delete(sliders);
             //Thong bao thanh cong
             TempData["message"] = new XMessage("success", "Xóa danh mục thành công");
             //O lai trang thung rac
