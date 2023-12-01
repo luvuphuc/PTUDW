@@ -31,8 +31,8 @@ namespace MyClass.Model
         [Display(Name = "Người tạo")]
         [Required(ErrorMessage = "Người tạo không để trống")]
         public int CreateBy {  get; set; }
-        [Display(Name = "Người tạo")]
-        [Required(ErrorMessage = "Người tạo không để trống")]
+        [Display(Name = "Ngày tạo")]
+        [Required(ErrorMessage = "Ngày tạo không để trống")]
         public DateTime CreateAt { get; set; }
         [Display(Name = "Người cập nhật")]
         public int? UpdateBy { get; set; }
