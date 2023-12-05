@@ -9,11 +9,13 @@ using System.Web;
 using System.Web.Mvc;
 using MyClass.DAO;
 using MyClass.Model;
+using ProjectASP.Areas.Admin.Code;
 using ProjectASP.Library;
 using UDW.Library;
 
 namespace ProjectASP.Areas.Admin.Controllers
 {
+    [Role]
     public class ProductController : Controller
     {
         ProductsDAO productsDAO = new ProductsDAO();
@@ -25,7 +27,7 @@ namespace ProjectASP.Areas.Admin.Controllers
             var products = productsDAO.getList("Index");
             foreach (var i in products)
             {
-                Suppliers supplier = suppliersDAO.getRow(i.Supplier);
+                Suppliers supplier = suppliersDAO.getRow(i.SupplierId);
                 if (supplier != null)
                 {
                     ViewBag.Name = supplier.Name;

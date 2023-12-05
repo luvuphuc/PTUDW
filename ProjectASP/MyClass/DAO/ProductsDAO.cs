@@ -69,24 +69,132 @@ namespace MyClass.DAO
         // GET: Admin/Supplier
 
         //INDEX dua vao status = 1,2, còn status = 0 == thung rac
-        public List<Products> getList(string status = "All")
+        public List<ProductInfo> getList(string status = "All")
         {
-            List<Products> list = null;
+            List<ProductInfo> list = null;
             switch (status)
             {
                 case "Index":
                     {
-                        list = db.Products.Where(m => m.Status != 0).ToList();
+                        list = db.Products
+                                .Where(p => p.Status != 0)
+                  .Join(
+                  db.Categories, // Bảng Categories
+                  p => p.CatID, // Khóa ngoại của Products liên kết với Categories
+                  c => c.Id, // Khóa chính của Categories
+                  (p, c) => new { Product = p, Category = c }//Kết hợp Products - Categories
+                  )
+                  .Join(
+                  db.Suppliers, // Bảng Suppliers
+                                // Khóa ngoại của Product/Category liên kết với Suppliers
+                  pc => pc.Product.Supplier,
+                  s => s.Id, // Khóa chính của Suppliers
+                  (pc, s) => new ProductInfo
+                  {
+                      Id = pc.Product.Id,
+                      CatID = pc.Product.CatID,
+                      Name = pc.Product.Name,
+                      CatName = pc.Category.Name, // Lấy tên danh mục từ bảng Categories
+                      SupplierId = pc.Product.Supplier,
+                      SupplierName = s.Name, // Lấy tên nhà cung cấp từ bảng Suppliers
+                      Slug = pc.Product.Slug,
+                      Image = pc.Product.Image,
+                      Price = pc.Product.Price,
+                      SalePrice = pc.Product.SalePrice,
+                      Amount = pc.Product.Amount,
+                      MetaDesc = pc.Product.MetaDesc,
+                      MetaKey = pc.Product.MetaKey,
+                      CreateBy = pc.Product.CreateBy,
+                      CreateAt = pc.Product.CreateAt,
+                      UpdateBy = pc.Product.UpdateBy,
+                      UpdateAt = pc.Product.UpdateAt,
+                      Status = pc.Product.Status
+                  }
+                      )
+                    .ToList();
                         break;
                     }
                 case "Trash":
                     {
-                        list = db.Products.Where(m => m.Status == 0).ToList();
+                        list = db.Products
+                       .Where(p => p.Status == 0)
+                       .Join(
+                      db.Categories, // Bảng Categories
+                      p => p.CatID, // Khóa ngoại của Products liên kết với Categories
+                      c => c.Id, // Khóa chính của Categories
+                      (p, c) => new { Product = p, Category = c }//Kết hợp Products - Categories
+                      )
+                      .Join(
+                      db.Suppliers, // Bảng Suppliers
+                                    // Khóa ngoại của Product/Category liên kết với Suppliers
+                      pc => pc.Product.Supplier,
+                      s => s.Id, // Khóa chính của Suppliers
+                      (pc, s) => new ProductInfo
+                      {
+                          Id = pc.Product.Id,
+                          CatID = pc.Product.CatID,
+                          Name = pc.Product.Name,
+                          CatName = pc.Category.Name, // Lấy tên danh mục từ bảng Categories
+                          SupplierId = pc.Product.Supplier,
+                          SupplierName = s.Name, // Lấy tên nhà cung cấp từ bảng Suppliers
+                          Slug = pc.Product.Slug,
+                          Image = pc.Product.Image,
+                          Price = pc.Product.Price,
+                          SalePrice = pc.Product.SalePrice,
+                          Amount = pc.Product.Amount,
+                          MetaDesc = pc.Product.MetaDesc,
+                          MetaKey = pc.Product.MetaKey,
+                          CreateBy = pc.Product.CreateBy,
+                          CreateAt = pc.Product.CreateAt,
+                          UpdateBy = pc.Product.UpdateBy,
+                          UpdateAt = pc.Product.UpdateAt,
+                          Status = pc.Product.Status
+                      }
+                        )
+                        .ToList();
                         break;
                     }
+                // Các trường hợp khác xử lý tương tự
                 default:
                     {
-                        return db.Products.ToList();
+                        list = db.Products
+                         .Where(p => p.Status != 0)
+                         .Join(
+                        db.Categories, // Bảng Categories
+                        p => p.CatID, // Khóa ngoại của Products liên kết với Categories
+                        c => c.Id, // Khóa chính của Categories
+                        (p, c) => new { Product = p, Category = c }//Kết hợp Products - Categories
+                        )
+                        .Join(
+                        db.Suppliers, // Bảng Suppliers
+                                      // Khóa ngoại của Product/Category liên kết với Suppliers
+                        pc => pc.Product.Supplier,
+                        s => s.Id, // Khóa chính của Suppliers
+                        (pc, s) => new ProductInfo
+                        {
+                            Id = pc.Product.Id,
+                            CatID = pc.Product.CatID,
+                            Name = pc.Product.Name,
+                            CatName = pc.Category.Name, // Lấy tên danh mục từ bảng Categories
+                            SupplierId = pc.Product.Supplier,
+                            SupplierName = s.Name, // Lấy tên nhà cung cấp từ bảng Suppliers
+                            Slug = pc.Product.Slug,
+                            Image = pc.Product.Image,
+                            Price = pc.Product.Price,
+                            SalePrice = pc.Product.SalePrice,
+                            Amount = pc.Product.Amount,
+                            MetaDesc = pc.Product.MetaDesc,
+                            MetaKey = pc.Product.MetaKey,
+                            CreateBy = pc.Product.CreateBy,
+                            CreateAt = pc.Product.CreateAt,
+                            UpdateBy = pc.Product.UpdateBy,
+                            UpdateAt = pc.Product.UpdateAt,
+                            Status = pc.Product.Status
+
+                        }
+                          )
+                          .ToList();
+                        break;
                     }
             }
             return list;

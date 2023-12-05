@@ -8,10 +8,12 @@ using System.Web;
 using System.Web.Mvc;
 using MyClass.DAO;
 using MyClass.Model;
+using ProjectASP.Areas.Admin.Code;
 using ProjectASP.Library;
 
 namespace ProjectASP.Areas.Admin.Controllers
 {
+    [Role]
     public class MenuController : Controller
     {
         //Goi 4 lop DAO can thuc thi

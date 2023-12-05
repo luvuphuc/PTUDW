@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using PagedList;
+using System.Web.UI;
 
 namespace ProjectASP.Controllers
 {
@@ -99,11 +101,17 @@ namespace ProjectASP.Controllers
 
         /////////////////////////////////////////////////////////////////////////////
         //Site/Product
-        public ActionResult Product()
+        public ActionResult Product(int? page)
         {
+            int pageSize = 8;
+            int pageNumber = page ?? 1;
+
             ProductsDAO productsDAO = new ProductsDAO();
-            List<ProductInfo> list = productsDAO.getListBylimit(10);
-            return View("Product", list);
+            List<ProductInfo> list = productsDAO.getList("All");
+
+            IPagedList<ProductInfo> pagedList = list.ToPagedList(pageNumber, pageSize);
+
+            return View("Product", pagedList);
         }
 
         /////////////////////////////////////////////////////////////////////////////

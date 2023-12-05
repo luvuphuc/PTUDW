@@ -1,4 +1,5 @@
 ﻿using Model;
+using ProjectASP.App_Start;
 using ProjectASP.Areas.Admin.Code;
 using ProjectASP.Areas.Admin.Model;
 using System;
@@ -7,7 +8,6 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-
 namespace ProjectASP.Areas.Admin.Controllers
 {
     public class LoginController : Controller
@@ -34,6 +34,11 @@ namespace ProjectASP.Areas.Admin.Controllers
                 ModelState.AddModelError("", "Tên đăng nhập hoặc mật khẩu không đúng");
             }
             return View(model);
+        }
+        public ActionResult Logout()
+        {
+            SessionHelper.SetSession(null);
+            return RedirectToAction("Index", "Login");
         }
 
     }

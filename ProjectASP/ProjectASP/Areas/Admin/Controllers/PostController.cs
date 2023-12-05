@@ -9,11 +9,13 @@ using System.Web;
 using System.Web.Mvc;
 using MyClass.DAO;
 using MyClass.Model;
+using ProjectASP.Areas.Admin.Code;
 using ProjectASP.Library;
 using UDW.Library;
 
 namespace ProjectASP.Areas.Admin.Controllers
 {
+    [Role]
     public class PostController : Controller
     {
         PostsDAO postsDAO = new PostsDAO();
@@ -24,7 +26,7 @@ namespace ProjectASP.Areas.Admin.Controllers
         // Admin/Post/Index: Tra ve danh sach cac mau tin
         public ActionResult Index()
         {
-            return View(postsDAO.getList("Index", "Post"));//hien thi toan bo danh sach loai SP
+            return View(postsDAO.getList("Index", "post"));//hien thi toan bo danh sach loai SP
         }
 
         /////////////////////////////////////////////////////////////////////////////////////
@@ -69,7 +71,7 @@ namespace ProjectASP.Areas.Admin.Controllers
                 }//ket thuc phan upload hinh anh
 
                 //xu ly cho muc PostType
-                posts.PostType = "post";
+                posts.PostType = "Post";
 
                 //Xu ly cho muc CreateAt
                 posts.CreateAt = DateTime.Now;

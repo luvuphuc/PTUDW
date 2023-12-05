@@ -8,11 +8,13 @@ using System.Web;
 using System.Web.Mvc;
 using MyClass.DAO;
 using MyClass.Model;
+using ProjectASP.Areas.Admin.Code;
 using ProjectASP.Library;
 using UDW.Library;
 
 namespace ProjectASP.Areas.Admin.Controllers
 {
+    [Role]
     public class TopicController : Controller
     {
         TopicsDAO topicsDAO = new TopicsDAO();

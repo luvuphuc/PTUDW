@@ -54,7 +54,7 @@
                                 <td>@Html.DisplayFor(modelItem => item.Title)</td>
                                 <td>@Html.DisplayFor(modelItem => item.TopID)</td>
                                 <td>@Html.DisplayFor(modelItem => item.PostType)</td>
-                                <td><img src="~/Public/img/post/@item.Image" alt="Img" /></td>
+                                <td><img src="~/Public/img/post/@item.Image" alt="Img" class="img-fluid" /></td>
                                 <td>@Html.DisplayFor(modelItem => item.Id)</td>
                                 <td>
                                     <a href="@Url.Action("Undo","Post", new { id = item.Id })" class="btn-sm btn-info"> <i class="fa fa-undo"></i></a>

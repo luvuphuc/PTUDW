@@ -10,9 +10,11 @@ using MyClass.Model;
 using MyClass.DAO;
 using UDW.Library;
 using ProjectASP.Library;
+using ProjectASP.Areas.Admin.Code;
 
 namespace ProjectASP.Areas.Admin.Controllers
 {
+    [Role]
     public class CategoryController : Controller
     {
         CategoriesDAO categoriesDAO = new CategoriesDAO();

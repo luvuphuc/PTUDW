@@ -87,3 +87,7 @@ C:\Users\Vu Phuc\Documents\GitHub\PTUDW\ProjectASP\ProjectASP\bin\MyClass.dll.co
 C:\Users\Vu Phuc\Documents\GitHub\PTUDW\ProjectASP\ProjectASP\bin\Model.dll
 C:\Users\Vu Phuc\Documents\GitHub\PTUDW\ProjectASP\ProjectASP\bin\Model.pdb
 C:\Users\Vu Phuc\Documents\GitHub\PTUDW\ProjectASP\ProjectASP\bin\Model.dll.config
+C:\Users\Vu Phuc\Documents\GitHub\PTUDW\ProjectASP\ProjectASP\bin\PagedList.dll
+C:\Users\Vu Phuc\Documents\GitHub\PTUDW\ProjectASP\ProjectASP\bin\PagedList.Mvc.dll
+C:\Users\Vu Phuc\Documents\GitHub\PTUDW\ProjectASP\ProjectASP\bin\PagedList.xml
+C:\Users\Vu Phuc\Documents\GitHub\PTUDW\ProjectASP\ProjectASP\bin\PagedList.Mvc.xml
